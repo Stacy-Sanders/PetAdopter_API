@@ -1,4 +1,5 @@
 ﻿using PetAdopter_API.Data;
+using PetAdopter_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,4 +34,4 @@ namespace PetAdopter_API.Controllers
         }
     }
 }
-}
+
