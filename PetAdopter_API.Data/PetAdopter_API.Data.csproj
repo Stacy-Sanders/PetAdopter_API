@@ -87,6 +87,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdopterTable.cs" />
+    <Compile Include="DomesticTable.cs" />
+    <Compile Include="ExoticTable.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202201261910157_INIT.cs" />
     <Compile Include="Migrations\202201261910157_INIT.designer.cs">
@@ -94,6 +97,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shelter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
