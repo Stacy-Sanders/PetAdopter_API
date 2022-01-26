@@ -91,9 +91,9 @@
     <Compile Include="DomesticTable.cs" />
     <Compile Include="ExoticTable.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202201262120377_INIT.cs" />
-    <Compile Include="Migrations\202201262120377_INIT.designer.cs">
-      <DependentUpon>202201262120377_INIT.cs</DependentUpon>
+    <Compile Include="Migrations\202201261910157_INIT.cs" />
+    <Compile Include="Migrations\202201261910157_INIT.designer.cs">
+      <DependentUpon>202201261910157_INIT.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,8 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201262120377_INIT.resx">
-      <DependentUpon>202201262120377_INIT.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201261910157_INIT.resx">
+      <DependentUpon>202201261910157_INIT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
