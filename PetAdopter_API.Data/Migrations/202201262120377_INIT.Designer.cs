@@ -13,7 +13,7 @@ namespace PetAdopter_API.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202201261910157_INIT"; }
+            get { return "202201262120377_INIT"; }
         }
         
         string IMigrationMetadata.Source
