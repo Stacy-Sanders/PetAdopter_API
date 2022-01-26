@@ -27,7 +27,7 @@ namespace PetAdopter_API.Models
         public bool IsSterile { get; set; }
 
         [Required]
-        public DateTimeOffset BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public float Age
         {
@@ -56,9 +56,9 @@ namespace PetAdopter_API.Models
         public int ShelterId { get; set; }
 
         public virtual Shelter Shelter { get; set; }
+        public DomesticTable() { }
 
-
-        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTimeOffset birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, int shelterId)
+        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, int shelterId)
         {
             Species = species;
             Name = name;

@@ -20,7 +20,7 @@ namespace PetAdopter_API.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> CreateDomestic([FromBody] DomesticTable model)
         {
-            if (model is null)
+            if (!ModelState.IsValid)
             {
                 return BadRequest("Your request body cannot be empty.");
             }
