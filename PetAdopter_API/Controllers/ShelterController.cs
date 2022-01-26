@@ -20,7 +20,7 @@ namespace PetAdopter_API.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> CreateShelter([FromBody] Shelter model)
         {
-            if (model is null)
+            if (!ModelState.IsValid)
             {
                 return BadRequest("You need a request body");
             }
@@ -28,6 +28,7 @@ namespace PetAdopter_API.Controllers
             {
                 _context.Shelters.Add(model);
                 int changeCount = await _context.SaveChangesAsync();
+                return Ok();
             }
             return BadRequest(ModelState);
         }
