@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdopterController.cs" />
     <Compile Include="Controllers\DeClawController.cs" />
+    <Compile Include="Controllers\DomesticController.cs" />
     <Compile Include="Controllers\ExoticController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HypoallergenicController.cs" />
