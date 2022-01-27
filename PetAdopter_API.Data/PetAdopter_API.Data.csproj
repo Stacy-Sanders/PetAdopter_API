@@ -91,6 +91,11 @@
     <Compile Include="DomesticTable.cs" />
     <Compile Include="ExoticTable.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202201271929080_INIT.cs" />
+    <Compile Include="Migrations\202201271929080_INIT.designer.cs">
+      <DependentUpon>202201271929080_INIT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shelter.cs" />
   </ItemGroup>
@@ -99,7 +104,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <EmbeddedResource Include="Migrations\202201271929080_INIT.resx">
+      <DependentUpon>202201271929080_INIT.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

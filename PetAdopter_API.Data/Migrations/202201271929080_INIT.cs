@@ -30,7 +30,7 @@
                         Breed = c.String(),
                         Sex = c.String(nullable: false),
                         IsSterile = c.Boolean(nullable: false),
-                        BirthDate = c.DateTimeOffset(nullable: false, precision: 7),
+                        BirthDate = c.DateTime(nullable: false),
                         IsAdoptionPending = c.Boolean(nullable: false),
                         IsKidFriendly = c.Boolean(nullable: false),
                         IsPetFriendly = c.Boolean(nullable: false),

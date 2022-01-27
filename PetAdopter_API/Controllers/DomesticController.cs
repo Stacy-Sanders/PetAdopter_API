@@ -20,10 +20,13 @@ namespace PetAdopter_API.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> CreateDomestic([FromBody] DomesticTable model)
         {
-            if (!ModelState.IsValid)
+            if (model is null)
             {
                 return BadRequest("Your request body cannot be empty.");
             }
+
+            //Shelter shelter = await _domestic.Shelters.FindAsync(id);
+            //model.ShelterId = id;
 
             // If valid
             if (ModelState.IsValid)
@@ -128,7 +131,7 @@ namespace PetAdopter_API.Controllers
             domestic.IsPetFriendly = updatedDomestic.IsPetFriendly;
             domestic.IsHypoallergenic = updatedDomestic.IsHypoallergenic;
             domestic.IsHouseTrained = updatedDomestic.IsHouseTrained;
-            domestic.ShelterId = updatedDomestic.ShelterId;
+            //domestic.ShelterId = updatedDomestic.ShelterId;
 
             // Save the changes
             await _domestic.SaveChangesAsync();

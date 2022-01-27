@@ -52,13 +52,13 @@ namespace PetAdopter_API.Models
         public bool IsDeclawed { get; set; }
 
 
-        [ForeignKey(nameof(Shelter))]
-        public int ShelterId { get; set; }
+        //[ForeignKey(nameof(Shelter))]
+      //  public int ShelterId { get; set; }
 
-        public virtual Shelter Shelter { get; set; }
+        //public virtual Shelter Shelter { get; set; }
         public DomesticTable() { }
 
-        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, int shelterId)
+        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, bool isdeclawed)
         {
             Species = species;
             Name = name;
@@ -70,7 +70,8 @@ namespace PetAdopter_API.Models
             IsKidFriendly = isKidFriendly;
             IsPetFriendly = isPetFriendly;
             IsHypoallergenic = isHypoallergenic;
-            ShelterId = shelterId;
+            //ShelterId = shelterId;
+            IsDeclawed = isdeclawed;
         }
     }
 }
