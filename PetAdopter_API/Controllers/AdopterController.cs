@@ -30,15 +30,15 @@ namespace PetAdopter_API.Controllers
                 _context.Adopter.Add(model);
                 int changeCount = await _context.SaveChangesAsync();
             }
-            return BadRequest(ModelState);
+            return Ok(ModelState);
         }
 
         //Get All
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
-            List<Shelter> shelters = await _context.Shelters.ToListAsync();
-            return Ok(shelters);
+            List<AdopterTable> adopters = await _context.Adopter.ToListAsync();
+            return Ok(adopters);
         }
 
         //Get By ID
@@ -79,7 +79,7 @@ namespace PetAdopter_API.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok("The shelter was updated");
+            return Ok("The Adopter was updated");
         }
 
         //Delete (delete)
@@ -94,7 +94,7 @@ namespace PetAdopter_API.Controllers
 
             if (await _context.SaveChangesAsync() == 1)
             {
-                return Ok("The shelter was deleted");
+                return Ok("The Adopter was deleted");
             }
 
             return InternalServerError();
