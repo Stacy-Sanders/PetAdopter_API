@@ -25,6 +25,9 @@ namespace PetAdopter_API.Controllers
                 return BadRequest("Your request body cannot be empty.");
             }
 
+            //Shelter shelter = await _domestic.Shelters.FindAsync(id);
+            //model.ShelterId = id;
+
             // If valid
             if (ModelState.IsValid)
             {
@@ -68,7 +71,7 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetBySpecies([FromUri] string species)
         {
-            DomesticTable domestic = await _domestic.Domestics.FindAsync(species);
+            var domestic =  await _domestic.Domestics.Where(x => x.Species == species).ToListAsync();
 
             if (domestic != null)
             {
@@ -83,7 +86,7 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetByBreed([FromUri] string breed)
         {
-            DomesticTable domestic = await _domestic.Domestics.FindAsync(breed);
+            var domestic = await _domestic.Domestics.Where(x => x.Breed == breed).ToListAsync();
 
             if (domestic != null)
             {
@@ -128,7 +131,7 @@ namespace PetAdopter_API.Controllers
             domestic.IsPetFriendly = updatedDomestic.IsPetFriendly;
             domestic.IsHypoallergenic = updatedDomestic.IsHypoallergenic;
             domestic.IsHouseTrained = updatedDomestic.IsHouseTrained;
-            domestic.ShelterId = updatedDomestic.ShelterId;
+            //domestic.ShelterId = updatedDomestic.ShelterId;
 
             // Save the changes
             await _domestic.SaveChangesAsync();
