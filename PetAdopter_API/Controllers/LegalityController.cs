@@ -2,9 +2,11 @@
 using PetAdopter_API.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
@@ -16,21 +18,15 @@ namespace PetAdopter_API.Controllers
         // GET by Legallity
         // api/Dogs/{isLegal}
         [HttpGet]
-        public IHttpActionResult GetLegal()
+        public async Task<IHttpActionResult> GetLegalInCity([FromUri] bool isLegalInCity)
         {
+            var exotic = await _exotic.Exotics.Where(x => x.IsLegalInCity == isLegalInCity).ToListAsync();
 
-            List<ExoticTable> legalExotics = new List<ExoticTable>();
-            foreach (ExoticTable exotic in _exotic.Exotics)
+            if (exotic == null)
             {
-                if (exotic.IsLegalInCity == true)
-                {
-                    legalExotics.Add(exotic);
-                }
-                return (IHttpActionResult)legalExotics;
+                return NotFound();
             }
-
-            return InternalServerError();
-
+            return Ok(exotic);
         }
     }
 }

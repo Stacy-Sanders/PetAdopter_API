@@ -27,14 +27,14 @@ namespace PetAdopter_API.Models
         public bool IsSterile { get; set; }
 
         [Required]
-        public DateTime BirthDate { get; set; }
+        public DateTimeOffset BirthDate { get; set; }
 
         public float Age
         {
 
             get
             {
-                TimeSpan age = DateTime.Now - BirthDate;
+                TimeSpan age = DateTimeOffset.Now - BirthDate;
                 return (int)Math.Floor(age.TotalDays / 365.24);
             }
 

@@ -71,7 +71,7 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetBySpecies([FromUri] string species)
         {
-            DomesticTable domestic = await _domestic.Domestics.FindAsync(species);
+            var domestic =  await _domestic.Domestics.Where(x => x.Species == species).ToListAsync();
 
             if (domestic != null)
             {
@@ -86,7 +86,7 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetByBreed([FromUri] string breed)
         {
-            DomesticTable domestic = await _domestic.Domestics.FindAsync(breed);
+            var domestic = await _domestic.Domestics.Where(x => x.Breed == breed).ToListAsync();
 
             if (domestic != null)
             {
