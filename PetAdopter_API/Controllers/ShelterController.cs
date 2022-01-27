@@ -58,7 +58,7 @@ namespace PetAdopter_API.Controllers
         [HttpPut]
         public async Task<IHttpActionResult> UpdateShelter([FromBody] int id, [FromBody] Shelter updatedShelter)
         {
-            if (id != updatedShelter?.Id)
+            if (id != updatedShelter?.ShelterId)
             {
                 return BadRequest("Ids do not match.");
             }
@@ -70,7 +70,7 @@ namespace PetAdopter_API.Controllers
             if (shelter is null)
                 return NotFound();
 
-            shelter.Name = updatedShelter.Name;
+            shelter.ShelterName = updatedShelter.ShelterName;
             shelter.State = updatedShelter.State;
             shelter.City = updatedShelter.City;
             shelter.Rating = updatedShelter.Rating;

@@ -56,21 +56,8 @@ namespace PetAdopter_API.Models
         public int ShelterId { get; set; }
 
         public virtual Shelter Shelter { get; set; }
-        public DomesticTable() { }
+        
 
-        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, int shelterId)
-        {
-            Species = species;
-            Name = name;
-            Breed = breed;
-            Sex = sex;
-            IsSterile = isSterile;
-            BirthDate = birthDate;
-            IsAdoptionPending = isAdoptionPending;
-            IsKidFriendly = isKidFriendly;
-            IsPetFriendly = isPetFriendly;
-            IsHypoallergenic = isHypoallergenic;
-            ShelterId = shelterId;
-        }
+        
     }
 }
