@@ -21,12 +21,12 @@ namespace PetAdopter_API.Controllers
         {
             if (exotic is null)
             {
-                return BadRequest("Please enter a value");
+                return BadRequest("Your request body cannot be empty");
             }
             if (ModelState.IsValid)
             {
                 _exotic.Exotics.Add(exotic);
-                int ExoticCount = await _exotic.SaveChangesAsync();
+                int changeCount = await _exotic.SaveChangesAsync();
 
                 return Ok("Your pet has been posted!");
             }
@@ -44,13 +44,13 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetBySpecies([FromUri] string species)
         {
-            ExoticTable exotic = await _exotic.Exotics.FindAsync(species);
+            var exotic = await _exotic.Exotics.Where(x => x.Species == species).ToListAsync();
 
             if (exotic is null)
             {
                 return NotFound();
             }
-            return Ok(exotic.Species);
+            return Ok(exotic);
         }
         [HttpPut]
         public async Task<IHttpActionResult> UpdateExotic([FromUri] int id, [FromBody] ExoticTable updatedExotic)
@@ -73,7 +73,7 @@ namespace PetAdopter_API.Controllers
             exotic.IsKidFriendly = updatedExotic.IsKidFriendly;
             exotic.IsPetFriendly = updatedExotic.IsPetFriendly;
             exotic.IsLegalInCity = updatedExotic.IsLegalInCity;
-            exotic.ShelterId = updatedExotic.ShelterId;
+            //exotic.ShelterId = updatedExotic.ShelterId;
             exotic.Sterile = updatedExotic.Sterile;
             exotic.IsHypoallergenic = updatedExotic.IsHypoallergenic;
 
