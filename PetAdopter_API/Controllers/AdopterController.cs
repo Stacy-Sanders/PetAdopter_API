@@ -62,7 +62,7 @@ namespace PetAdopter_API.Controllers
         //Put (update)
         [HttpPut]
 
-        public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] AdopterTable updatedAdopter)
+        public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] Adopter updatedAdopter)
 
         {
             if (id != updatedAdopter?.Id)
