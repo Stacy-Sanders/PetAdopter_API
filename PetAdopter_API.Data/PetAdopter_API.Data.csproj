@@ -91,9 +91,6 @@
     <Compile Include="DomesticTable.cs" />
     <Compile Include="ExoticTable.cs" />
     <Compile Include="IdentityModels.cs" />
-<<<<<<< HEAD
-    <Compile Include="Migrations\202201262117584_InitialMigrations.cs" />
-=======
     <Compile Include="Migrations\202201271929080_INIT.cs" />
     <Compile Include="Migrations\202201271929080_INIT.designer.cs">
       <DependentUpon>202201271929080_INIT.cs</DependentUpon>
@@ -103,7 +100,6 @@
       <DependentUpon>202201271952322_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
->>>>>>> 02292f0c14c4d9d4a55d5636a46e98b7dee13559
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shelter.cs" />
   </ItemGroup>
@@ -111,17 +107,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-<<<<<<< HEAD
-=======
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201271929080_INIT.resx">
-      <DependentUpon>202201271929080_INIT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201271952322_update.resx">
-      <DependentUpon>202201271952322_update.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
->>>>>>> 02292f0c14c4d9d4a55d5636a46e98b7dee13559
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

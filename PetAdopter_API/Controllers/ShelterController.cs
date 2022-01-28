@@ -97,5 +97,13 @@ namespace PetAdopter_API.Controllers
 
             return InternalServerError();
         }
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAllDomestics ([FromUri] int id)
+        {
+            var domestic = await _context.Domestics.Where(x => x.ShelterId == id).ToListAsync();
+            if (domestic is null) { return NotFound(); }
+            await _context.Domestics.ToListAsync();
+            return Ok(domestic);
+        }
     }
 }

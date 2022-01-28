@@ -22,6 +22,8 @@ namespace PetAdopter_API.Models
 
         public float Rating { get; set; }
 
+        public virtual List<ExoticTable> Exotics { get; set; } = new List<ExoticTable>();
+        public virtual List<DomesticTable> Domestics { get; set;} = new List<DomesticTable>();
 
 
 

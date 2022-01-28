@@ -9,11 +9,9 @@
     {
         public Configuration()
         {
-<<<<<<< HEAD
+
             AutomaticMigrationsEnabled = false;
-=======
-            AutomaticMigrationsEnabled = true;
->>>>>>> 02292f0c14c4d9d4a55d5636a46e98b7dee13559
+
         }
 
         protected override void Seed(PetAdopter_API.Data.ApplicationDbContext context)
