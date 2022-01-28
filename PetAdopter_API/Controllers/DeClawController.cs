@@ -15,8 +15,8 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public IHttpActionResult GetDeclawedCats()
         {
-            List<DomesticTable> declawedList = new List<DomesticTable>();
-            foreach (DomesticTable cat in _domestic.Domestics)
+            List<Domestic> declawedList = new List<Domestic>();
+            foreach (Domestic cat in _domestic.Domestics)
             {
                 if (cat.IsDeclawed == true)
                 {

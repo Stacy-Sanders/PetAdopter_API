@@ -19,8 +19,8 @@ namespace PetAdopter_API.Controllers
         public IHttpActionResult GetHypo()
         {
 
-            List<DomesticTable> hypoDogs = new List<DomesticTable>();
-            foreach (DomesticTable dog in _domestic.Domestics)
+            List<Domestic> hypoDogs = new List<Domestic>();
+            foreach (Domestic dog in _domestic.Domestics)
             {
                 if (dog.IsHypoallergenic == true)
                 {

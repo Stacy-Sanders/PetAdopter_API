@@ -19,8 +19,8 @@ namespace PetAdopter_API.Controllers
         public IHttpActionResult GetLegal()
         {
 
-            List<ExoticTable> legalExotics = new List<ExoticTable>();
-            foreach (ExoticTable exotic in _exotic.Exotics)
+            List<Exotic> legalExotics = new List<Exotic>();
+            foreach (Exotic exotic in _exotic.Exotics)
             {
                 if (exotic.IsLegalInCity == true)
                 {
