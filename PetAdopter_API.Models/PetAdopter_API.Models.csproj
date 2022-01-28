@@ -57,7 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DomesticCreate.cs" />
+    <Compile Include="DomesticDetail.cs" />
+    <Compile Include="DomesticEdit.cs" />
+    <Compile Include="DomesticListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

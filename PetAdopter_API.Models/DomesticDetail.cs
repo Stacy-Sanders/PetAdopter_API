@@ -1,40 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-
-    public class DomesticTable
+    public class DomesticDetail
     {
-        [Key]
-        public int Id { get; set; }
+        public int DomesticId { get; set; }
 
-        [Required]
         public string Species { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public string Breed { get; set; }
 
-        [Required]
         public string Sex { get; set; }
 
         public bool IsSterile { get; set; }
 
-        [Required]
-        public DateTimeOffset BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public float Age
         {
 
             get
             {
-                TimeSpan age = DateTimeOffset.Now - BirthDate;
+                TimeSpan age = DateTime.Now - BirthDate;
                 return (int)Math.Floor(age.TotalDays / 365.24);
             }
 
@@ -49,20 +43,14 @@ namespace PetAdopter_API.Models
         public bool IsHypoallergenic { get; set; }
 
         public bool IsHouseTrained { get; set; }
+
         public bool IsDeclawed { get; set; }
 
+        [Display(Name="Created")]
+        public DateTimeOffset CreatedUtc { get; set; }
 
-        [ForeignKey(nameof(Shelter))]
-        public int ShelterId { get; set; }
-
-
-        public virtual Shelter Shelter { get; set; }
-        
-
-        
-
-
-
+        [Display(Name ="Modified")]
+        public DateTimeOffset? ModifiedUtc { get; set; }
 
     }
 }

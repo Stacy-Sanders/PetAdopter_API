@@ -9,10 +9,12 @@ namespace PetAdopter_API.Models
     public class Shelter
     {
         [Key]
+        public int Id { get; set; }
+
         public int ShelterId { get; set; }
 
         [Required]
-        public string ShelterName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         public string City { get; set; }
@@ -22,11 +24,15 @@ namespace PetAdopter_API.Models
 
         public float Rating { get; set; }
 
-        public virtual List<ExoticTable> Exotics { get; set; } = new List<ExoticTable>();
-        public virtual List<DomesticTable> Domestics { get; set;} = new List<DomesticTable>();
 
+        //public Shelter() { }
 
-
-
+        //public Shelter(string name, string city, string state, float rating)
+        //{
+        //    Name = name;
+        //    City = city;
+        //    State = state;
+        //    Rating = rating;
+        //}
     }
 }

@@ -87,17 +87,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdopterTable.cs" />
-    <Compile Include="DomesticTable.cs" />
-    <Compile Include="ExoticTable.cs" />
+    <Compile Include="Adopter.cs" />
+    <Compile Include="Domestic.cs" />
+    <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202201271929080_INIT.cs" />
-    <Compile Include="Migrations\202201271929080_INIT.designer.cs">
-      <DependentUpon>202201271929080_INIT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201271952322_update.cs" />
-    <Compile Include="Migrations\202201271952322_update.designer.cs">
-      <DependentUpon>202201271952322_update.cs</DependentUpon>
+    <Compile Include="Migrations\202201281502321_InitialMigration.cs" />
+    <Compile Include="Migrations\202201281502321_InitialMigration.designer.cs">
+      <DependentUpon>202201281502321_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,7 +103,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202201281502321_InitialMigration.resx">
+      <DependentUpon>202201281502321_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
