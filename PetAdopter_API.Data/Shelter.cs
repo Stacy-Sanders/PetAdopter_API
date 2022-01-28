@@ -24,15 +24,5 @@ namespace PetAdopter_API.Models
 
         public float Rating { get; set; }
 
-
-        //public Shelter() { }
-
-        //public Shelter(string name, string city, string state, float rating)
-        //{
-        //    Name = name;
-        //    City = city;
-        //    State = state;
-        //    Rating = rating;
-        //}
     }
 }

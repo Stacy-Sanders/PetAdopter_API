@@ -10,7 +10,13 @@ namespace PetAdopter_API.Models
     public class Exotic
     {
         [Key]
-        public int Id { get; set; }
+        public int ExoticId { get; set; }
+
+        [Required]
+        public Guid AdminId { get; set; }
+
+        [Required]
+        public string Species { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -19,16 +25,13 @@ namespace PetAdopter_API.Models
         public string Breed { get; set; }
 
         [Required]
-        public string Species { get; set; }
-
-        [Required]
         public string Sex { get; set; }
 
         [Required]
-        public bool Sterile { get; set; }
+        public bool IsSterile { get; set; }
 
         [Required]
-        public DateTime Birthdate { get; set; }
+        public DateTime BirthDate { get; set; }
         
 
         public float Age
@@ -36,7 +39,7 @@ namespace PetAdopter_API.Models
 
             get
             {
-                TimeSpan age = DateTime.Now - Birthdate;
+                TimeSpan age = DateTime.Now - BirthDate;
                 return (int)Math.Floor(age.TotalDays / 365.24);
             }
 
@@ -59,25 +62,11 @@ namespace PetAdopter_API.Models
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
 
-        [ForeignKey(nameof(Shelter))]
-        public int ShelterId { get; set; }
-        public virtual Shelter Shelter { get; set; }
+        public DateTimeOffset? ModifiedUtc { get; set; }
 
-        //public ExoticTable(int id, string name, string breed, string species, bool isSterile, DateTime birthDate, float age, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool ishypoallegernic, bool islegalInCity, int shelterId)
-        //{
-        //    Id = id;
-        //    Name = name;
-        //    Breed = breed;
-        //    Species = species;
-        //    Sterile = isSterile;
-        //    BirthDate = birthDate;
-        //    IsAdoptionPending = isAdoptionPending;
-        //    IsKidFriendly = isKidFriendly;
-        //    IsPetFriendly = isPetFriendly;
-        //    IsHypoallergenic = ishypoallegernic;
-        //    IsLegalInCity = slegalInCity;
-        //    ShelterId = shelterId;
+        //[ForeignKey(nameof(Shelter))]
+        //public int ShelterId { get; set; }
+        //public virtual Shelter Shelter { get; set; }
 
-        //}
     }
 }
