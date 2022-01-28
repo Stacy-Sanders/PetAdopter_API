@@ -19,7 +19,7 @@ namespace PetAdopter_API.Controllers
 
         //Post(Create)
         [HttpPost]
-        public async Task<IHttpActionResult> CreateAdopter([FromBody] AdopterTable model)
+        public async Task<IHttpActionResult> CreateAdopter([FromBody] Adopter model)
         {
             if (model is null)
             {
@@ -30,14 +30,19 @@ namespace PetAdopter_API.Controllers
                 _context.Adopter.Add(model);
                 int changeCount = await _context.SaveChangesAsync();
             }
+
+
             return Ok(ModelState);
+
         }
 
         //Get All
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
-            List<AdopterTable> adopters = await _context.Adopter.ToListAsync();
+
+            List<Adopter> adopters = await _context.Adopter.ToListAsync();
+
             return Ok(adopters);
         }
 
@@ -45,7 +50,7 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetById([FromUri] int id)
         {
-            AdopterTable adopter = await _context.Adopter.FindAsync(id);
+            Adopter adopter = await _context.Adopter.FindAsync(id);
 
             if (adopter != null)
             {
@@ -56,7 +61,9 @@ namespace PetAdopter_API.Controllers
 
         //Put (update)
         [HttpPut]
+
         public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] AdopterTable updatedAdopter)
+
         {
             if (id != updatedAdopter?.Id)
             {
@@ -65,7 +72,7 @@ namespace PetAdopter_API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            AdopterTable adopter = await _context.Adopter.FindAsync(id);
+            Adopter adopter = await _context.Adopter.FindAsync(id);
 
             if (adopter is null)
                 return NotFound();
@@ -79,14 +86,16 @@ namespace PetAdopter_API.Controllers
 
             await _context.SaveChangesAsync();
 
+
             return Ok("The Adopter was updated");
+
         }
 
         //Delete (delete)
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteAdopter([FromUri] int id)
         {
-            AdopterTable adopter = await _context.Adopter.FindAsync(id);
+            Adopter adopter = await _context.Adopter.FindAsync(id);
             if (adopter is null)
                 return NotFound();
 
@@ -94,7 +103,9 @@ namespace PetAdopter_API.Controllers
 
             if (await _context.SaveChangesAsync() == 1)
             {
+
                 return Ok("The Adopter was deleted");
+
             }
 
             return InternalServerError();

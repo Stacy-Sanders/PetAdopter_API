@@ -18,9 +18,11 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetDeclawedCats([FromUri] bool isdeclawed)
         {
+
             var domestic = await _domestic.Domestics.Where(x => x.IsDeclawed == isdeclawed).ToListAsync();
 
             if (domestic == null)
+
             {
                 return NotFound();
             }

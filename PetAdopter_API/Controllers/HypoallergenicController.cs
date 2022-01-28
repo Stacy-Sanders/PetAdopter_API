@@ -22,7 +22,9 @@ namespace PetAdopter_API.Controllers
         {
             var domestic = await _domestic.Domestics.Where(x => x.IsHypoallergenic == ishypoallergenic).ToListAsync();
 
+
             if (domestic == null)
+
             {
                 return NotFound();
             }

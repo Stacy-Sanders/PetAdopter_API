@@ -17,7 +17,7 @@ namespace PetAdopter_API.Controllers
 
         //create
         [HttpPost]
-        public async Task<IHttpActionResult> CreateExotic([FromBody] ExoticTable exotic)
+        public async Task<IHttpActionResult> CreateExotic([FromBody] Exotic exotic)
         {
             if (exotic is null)
             {
@@ -37,14 +37,16 @@ namespace PetAdopter_API.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAllExotic()
         {
-            List<ExoticTable> exotics = await _exotic.Exotics.ToListAsync();
+            List<Exotic> exotics = await _exotic.Exotics.ToListAsync();
             return Ok(exotics);
         }
         //Get By Species
         [HttpGet]
         public async Task<IHttpActionResult> GetBySpecies([FromUri] string species)
         {
+
             var exotic = await _exotic.Exotics.Where(x => x.Species == species).ToListAsync();
+
 
             if (exotic is null)
             {
@@ -53,13 +55,13 @@ namespace PetAdopter_API.Controllers
             return Ok(exotic);
         }
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateExotic([FromUri] int id, [FromBody] ExoticTable updatedExotic)
+        public async Task<IHttpActionResult> UpdateExotic([FromUri] int id, [FromBody] Exotic updatedExotic)
         {
             if (id != updatedExotic.Id)
             {
                 return BadRequest("Please enter a valid Id");
             }
-            ExoticTable exotic = await _exotic.Exotics.FindAsync(id);
+            Exotic exotic = await _exotic.Exotics.FindAsync(id);
             if (exotic is null)
             {
                 return NotFound();
@@ -84,7 +86,7 @@ namespace PetAdopter_API.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteExotic([FromUri] int id)
         {
-            ExoticTable exotic = await _exotic.Exotics.FindAsync(id);
+            Exotic exotic = await _exotic.Exotics.FindAsync(id);
             if (exotic == null)
                 return NotFound();
 

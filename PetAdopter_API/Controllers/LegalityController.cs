@@ -22,7 +22,9 @@ namespace PetAdopter_API.Controllers
         {
             var exotic = await _exotic.Exotics.Where(x => x.IsLegalInCity == isLegalInCity).ToListAsync();
 
+
             if (exotic == null)
+
             {
                 return NotFound();
             }
