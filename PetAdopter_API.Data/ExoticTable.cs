@@ -44,26 +44,12 @@ namespace PetAdopter_API.Models
         public bool IsHypoallergenic { get; set; }
         
         public bool IsLegalInCity { get; set; }
-        //[ForeignKey(nameof(Shelter))]
-        //public int ShelterId { get; set; }
-        //public virtual Shelter Shelter { get; set; }
-        public ExoticTable() { }
-        public ExoticTable(int id, string name, string breed, string species, bool isSterile, DateTime birthdate, float age, bool isadoptionPending, bool isKidFriendly, bool isPetFriendly, bool ishypoallegernic, bool islegalInCity, int shelterId)
-        {
-            id = Id;
-            name = Name;
-            breed = Breed;
-            species = Species;
-            isSterile = Sterile;
-            birthdate = Birthdate;
-            age = Age;
-            isadoptionPending = IsAdoptionPending;
-            isKidFriendly = IsKidFriendly;
-            isPetFriendly = IsPetFriendly;
-            ishypoallegernic = IsHypoallergenic;
-            islegalInCity = IsLegalInCity;
-            //shelterId = ShelterId;
 
-        }
+
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
+
+        public virtual Shelter Shelter { get; set; }
+        
     }
 }
