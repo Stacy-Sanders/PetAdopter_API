@@ -27,14 +27,14 @@ namespace PetAdopter_API.Models
         public bool IsSterile { get; set; }
 
         [Required]
-        public DateTime BirthDate { get; set; }
+        public DateTimeOffset BirthDate { get; set; }
 
         public float Age
         {
 
             get
             {
-                TimeSpan age = DateTime.Now - BirthDate;
+                TimeSpan age = DateTimeOffset.Now - BirthDate;
                 return (int)Math.Floor(age.TotalDays / 365.24);
             }
 
@@ -52,12 +52,33 @@ namespace PetAdopter_API.Models
         public bool IsDeclawed { get; set; }
 
 
-        [ForeignKey(nameof(Shelter))]
-        public int ShelterId { get; set; }
+        //[ForeignKey(nameof(Shelter))]
+      //  public int ShelterId { get; set; }
 
+<<<<<<< HEAD
         public virtual Shelter Shelter { get; set; }
         
 
         
+=======
+        //public virtual Shelter Shelter { get; set; }
+        public DomesticTable() { }
+
+        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, bool isdeclawed)
+        {
+            Species = species;
+            Name = name;
+            Breed = breed;
+            Sex = sex;
+            IsSterile = isSterile;
+            BirthDate = birthDate;
+            IsAdoptionPending = isAdoptionPending;
+            IsKidFriendly = isKidFriendly;
+            IsPetFriendly = isPetFriendly;
+            IsHypoallergenic = isHypoallergenic;
+            //ShelterId = shelterId;
+            IsDeclawed = isdeclawed;
+        }
+>>>>>>> 02292f0c14c4d9d4a55d5636a46e98b7dee13559
     }
 }

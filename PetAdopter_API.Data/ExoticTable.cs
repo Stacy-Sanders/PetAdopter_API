@@ -13,17 +13,17 @@ namespace PetAdopter_API.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
+        
         public string Breed { get; set; }
         [Required]
         public string Species { get; set; }
         [Required]
         public string Sex { get; set; }
-        [Required]
+        
         public bool Sterile { get; set; }
         [Required]
         public DateTime Birthdate { get; set; }
-        [Required]
+        
         public float Age
         {
 
@@ -34,19 +34,41 @@ namespace PetAdopter_API.Models
             }
 
         }
-        [Required]
+        
         public bool IsAdoptionPending { get; set; }
-        [Required]
+        
         public bool IsKidFriendly { get; set; }
-        [Required]
+        
         public bool IsPetFriendly { get; set; }
-        [Required]
+        
         public bool IsHypoallergenic { get; set; }
-        [Required]
+        
         public bool IsLegalInCity { get; set; }
+<<<<<<< HEAD
         [ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
         public virtual Shelter Shelter { get; set; }
+=======
+        //[ForeignKey(nameof(Shelter))]
+        //public int ShelterId { get; set; }
+        //public virtual Shelter Shelter { get; set; }
+        public ExoticTable() { }
+        public ExoticTable(int id, string name, string breed, string species, bool isSterile, DateTime birthdate, float age, bool isadoptionPending, bool isKidFriendly, bool isPetFriendly, bool ishypoallegernic, bool islegalInCity, int shelterId)
+        {
+            id = Id;
+            name = Name;
+            breed = Breed;
+            species = Species;
+            isSterile = Sterile;
+            birthdate = Birthdate;
+            age = Age;
+            isadoptionPending = IsAdoptionPending;
+            isKidFriendly = IsKidFriendly;
+            isPetFriendly = IsPetFriendly;
+            ishypoallegernic = IsHypoallergenic;
+            islegalInCity = IsLegalInCity;
+            //shelterId = ShelterId;
+>>>>>>> 02292f0c14c4d9d4a55d5636a46e98b7dee13559
 
     }
 }
