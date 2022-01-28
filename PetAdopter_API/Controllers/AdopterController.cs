@@ -30,14 +30,19 @@ namespace PetAdopter_API.Controllers
                 _context.Adopter.Add(model);
                 int changeCount = await _context.SaveChangesAsync();
             }
-            return Ok("Adopter Added.");
+
+
+            return Ok(ModelState);
+
         }
 
         //Get All
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
+
             List<Adopter> adopters = await _context.Adopter.ToListAsync();
+
             return Ok(adopters);
         }
 
@@ -56,7 +61,9 @@ namespace PetAdopter_API.Controllers
 
         //Put (update)
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateAdopter([FromBody] int id, [FromBody] Adopter updatedAdopter)
+
+        public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] AdopterTable updatedAdopter)
+
         {
             if (id != updatedAdopter?.Id)
             {
@@ -79,7 +86,9 @@ namespace PetAdopter_API.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok("The adopter was updated");
+
+            return Ok("The Adopter was updated");
+
         }
 
         //Delete (delete)
@@ -94,7 +103,9 @@ namespace PetAdopter_API.Controllers
 
             if (await _context.SaveChangesAsync() == 1)
             {
-                return Ok("The adopter was deleted");
+
+                return Ok("The Adopter was deleted");
+
             }
 
             return InternalServerError();
