@@ -24,15 +24,8 @@ namespace PetAdopter_API.Models
 
         public float Rating { get; set; }
 
+        public List<Domestic> Domestics { get; set; } = new List<Domestic>();
+        public List<Exotic> Exotics { get; set; } = new List<Exotic> ();
 
-        //public Shelter() { }
-
-        //public Shelter(string name, string city, string state, float rating)
-        //{
-        //    Name = name;
-        //    City = city;
-        //    State = state;
-        //    Rating = rating;
-        //}
     }
 }
