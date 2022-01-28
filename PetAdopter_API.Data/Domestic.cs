@@ -8,10 +8,13 @@ using System.Web;
 namespace PetAdopter_API.Models
 {
 
-    public class DomesticTable
+    public class Domestic
     {
         [Key]
-        public int Id { get; set; }
+        public int DomesticId { get; set; }
+
+        [Required]
+        public Guid AdminId { get; set; }
 
         [Required]
         public string Species { get; set; }
@@ -49,28 +52,34 @@ namespace PetAdopter_API.Models
         public bool IsHypoallergenic { get; set; }
 
         public bool IsHouseTrained { get; set; }
+
         public bool IsDeclawed { get; set; }
 
+        [Required]
+        public DateTimeOffset CreatedUtc { get; set; }
+
+        public DateTimeOffset? ModifiedUtc { get; set; }
 
         [ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
 
         public virtual Shelter Shelter { get; set; }
-        public DomesticTable() { }
 
-        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, int shelterId)
-        {
-            Species = species;
-            Name = name;
-            Breed = breed;
-            Sex = sex;
-            IsSterile = isSterile;
-            BirthDate = birthDate;
-            IsAdoptionPending = isAdoptionPending;
-            IsKidFriendly = isKidFriendly;
-            IsPetFriendly = isPetFriendly;
-            IsHypoallergenic = isHypoallergenic;
-            ShelterId = shelterId;
-        }
+        //public DomesticTable() { }
+
+        //public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, int shelterId)
+        //{
+        //    Species = species;
+        //    Name = name;
+        //    Breed = breed;
+        //    Sex = sex;
+        //    IsSterile = isSterile;
+        //    BirthDate = birthDate;
+        //    IsAdoptionPending = isAdoptionPending;
+        //    IsKidFriendly = isKidFriendly;
+        //    IsPetFriendly = isPetFriendly;
+        //    IsHypoallergenic = isHypoallergenic;
+        //    ShelterId = shelterId;
+        //}
     }
 }
