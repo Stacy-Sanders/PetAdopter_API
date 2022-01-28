@@ -58,7 +58,7 @@ namespace PetAdopter_API.Controllers
         [HttpPut]
         public async Task<IHttpActionResult> UpdateShelter([FromBody] int id, [FromBody] Shelter updatedShelter)
         {
-            if (id != updatedShelter?.Id)
+            if (id != updatedShelter?.ShelterId)
             {
                 return BadRequest("Ids do not match.");
             }
@@ -70,7 +70,7 @@ namespace PetAdopter_API.Controllers
             if (shelter is null)
                 return NotFound();
 
-            shelter.Name = updatedShelter.Name;
+            shelter.ShelterName = updatedShelter.ShelterName;
             shelter.State = updatedShelter.State;
             shelter.City = updatedShelter.City;
             shelter.Rating = updatedShelter.Rating;
@@ -96,6 +96,14 @@ namespace PetAdopter_API.Controllers
             }
 
             return InternalServerError();
+        }
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAllDomestics ([FromUri] int id)
+        {
+            var domestic = await _context.Domestics.Where(x => x.ShelterId == id).ToListAsync();
+            if (domestic is null) { return NotFound(); }
+            await _context.Domestics.ToListAsync();
+            return Ok(domestic);
         }
     }
 }

@@ -20,9 +20,11 @@ namespace PetAdopter_API.Controllers
         // Create DomesticService
         private DomesticService CreateDomesticService()
         {
+
             var userId = Guid.Parse(User.Identity.GetUserId());
             var DomesticService = new DomesticService(userId);
             return DomesticService;
+
         }
 
         // POST
@@ -42,17 +44,21 @@ namespace PetAdopter_API.Controllers
         // GET ALL
         public IHttpActionResult Get()
         {
+
             DomesticService domesticService = CreateDomesticService();
             var domestics = domesticService.GetDomestics();
             return Ok(domestics);
+
         }
 
         // GET by ID
         public IHttpActionResult Get(int id)
         {
+
             DomesticService domesticService = CreateDomesticService();
             var domestic = domesticService.GetDomesticById(id);
             return Ok(domestic);
+
         }
 
         // PUT (update)
@@ -61,12 +67,14 @@ namespace PetAdopter_API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+
             var service = CreateDomesticService();
 
             if (!service.UpdateDomestic(domestic))
                 return InternalServerError();
 
             return Ok("Your domestic pet information has been updated.");
+
         }
 
         // DELETE

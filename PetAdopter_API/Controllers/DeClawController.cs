@@ -2,9 +2,11 @@
 using PetAdopter_API.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
@@ -12,19 +14,19 @@ namespace PetAdopter_API.Controllers
     public class DeclawController : ApiController
     {
         private readonly ApplicationDbContext _domestic = new ApplicationDbContext();
+        
         [HttpGet]
-        public IHttpActionResult GetDeclawedCats()
+        public async Task<IHttpActionResult> GetDeclawedCats([FromUri] bool isdeclawed)
         {
-            List<Domestic> declawedList = new List<Domestic>();
-            foreach (Domestic cat in _domestic.Domestics)
+
+            var domestic = await _domestic.Domestics.Where(x => x.IsDeclawed == isdeclawed).ToListAsync();
+
+            if (domestic == null)
+
             {
-                if (cat.IsDeclawed == true)
-                {
-                    declawedList.Add(cat);
-                }
-                return (IHttpActionResult)declawedList;
+                return NotFound();
             }
-            return InternalServerError();
+            return Ok(domestic);
         }
     }
 }

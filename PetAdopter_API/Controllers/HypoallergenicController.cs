@@ -2,9 +2,11 @@
 using PetAdopter_API.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
@@ -16,21 +18,17 @@ namespace PetAdopter_API.Controllers
         // GET by HypoAllergenic
         // api/Dogs/{isHypoallergenic}
         [HttpGet]
-        public IHttpActionResult GetHypo()
+        public async Task<IHttpActionResult> GetHypoallergenic([FromUri] bool ishypoallergenic)
         {
+            var domestic = await _domestic.Domestics.Where(x => x.IsHypoallergenic == ishypoallergenic).ToListAsync();
 
-            List<Domestic> hypoDogs = new List<Domestic>();
-            foreach (Domestic dog in _domestic.Domestics)
+
+            if (domestic == null)
+
             {
-                if (dog.IsHypoallergenic == true)
-                {
-                    hypoDogs.Add(dog);
-                }
-                return (IHttpActionResult)hypoDogs;
+                return NotFound();
             }
-
-            return InternalServerError();
-
+            return Ok(domestic);
         }
     }
 }
