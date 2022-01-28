@@ -18,6 +18,7 @@ namespace PetAdopter_API.Controllers
     {
 
         // Create DomesticService
+        [HttpPost]
         private DomesticService CreateDomesticService()
         {
 
@@ -28,6 +29,7 @@ namespace PetAdopter_API.Controllers
         }
 
         // POST
+        [HttpPost]
         public IHttpActionResult Post(DomesticCreate domestic)
         {
             if (!ModelState.IsValid)
@@ -42,6 +44,7 @@ namespace PetAdopter_API.Controllers
         }
 
         // GET ALL
+        [HttpGet]
         public IHttpActionResult Get()
         {
 
@@ -52,6 +55,7 @@ namespace PetAdopter_API.Controllers
         }
 
         // GET by ID
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
 
@@ -62,6 +66,7 @@ namespace PetAdopter_API.Controllers
         }
 
         // PUT (update)
+        [HttpPut]
         public IHttpActionResult Put(DomesticEdit domestic)
         {
             if (!ModelState.IsValid)
@@ -78,6 +83,7 @@ namespace PetAdopter_API.Controllers
         }
 
         // DELETE
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateDomesticService();
