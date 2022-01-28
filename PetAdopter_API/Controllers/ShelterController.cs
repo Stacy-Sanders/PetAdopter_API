@@ -70,7 +70,7 @@ namespace PetAdopter_API.Controllers
             if (shelter is null)
                 return NotFound();
 
-            shelter.ShelterName = updatedShelter.ShelterName;
+            shelter.Name = updatedShelter.Name;
             shelter.State = updatedShelter.State;
             shelter.City = updatedShelter.City;
             shelter.Rating = updatedShelter.Rating;
