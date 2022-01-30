@@ -108,6 +108,16 @@ namespace PetAdopter_API.Services
 
                 entity.Species = model.Species;
                 entity.Name = model.Name;
+                entity.Breed = model.Breed;
+                entity.Sex = model.Sex;
+                entity.IsSterile = model.IsSterile;
+                entity.BirthDate = model.BirthDate;
+                entity.IsAdoptionPending = model.IsAdoptionPending;
+                entity.IsKidFriendly = model.IsKidFriendly;
+                entity.IsPetFriendly = model.IsPetFriendly;
+                entity.IsHypoallergenic = model.IsHypoallergenic;
+                entity.IsHouseTrained = model.IsHouseTrained;
+                entity.IsDeclawed = model.IsDeclawed;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;

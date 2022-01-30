@@ -27,7 +27,7 @@ namespace PetAdopter_API.Models
         [Required]
         public string Sex { get; set; }
 
-        [Required]
+        // [Required]
         public bool IsSterile { get; set; }
 
         [Required]

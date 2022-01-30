@@ -27,17 +27,5 @@ namespace PetAdopter_API.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-
-        //public AdopterTable() { }
-        //public AdopterTable(int id, string firstName, string lastName, string city, string state, string phoneNumber)
-
-        //{
-        //    Id = id;
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    City = city;
-        //    State = state;
-        //    PhoneNumber = phoneNumber;
-        //}
     }
 }

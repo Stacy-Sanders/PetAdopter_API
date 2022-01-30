@@ -21,13 +21,13 @@ namespace PetAdopter_API.Models
         [Required]
         public string Sex { get; set; }
 
-        [Required]
+        // [Required]
         public bool IsSterile { get; set; }
 
         [Required]
         public DateTime BirthDate { get; set; }
 
-        [Required]
+        // [Required]
         public bool IsAdoptionPending { get; set; }
 
         public bool IsKidFriendly { get; set; }
@@ -39,9 +39,9 @@ namespace PetAdopter_API.Models
         [Required]
         public bool IsLegalInCity { get; set; }
 
-        [ForeignKey(nameof(Shelter))]
-        public int ShelterId { get; set; }
+        //[ForeignKey(nameof(Shelter))]
+        //public int ShelterId { get; set; }
 
-        public virtual Shelter Shelter { get; set; }
+        //public virtual Shelter Shelter { get; set; }
     }
 }
