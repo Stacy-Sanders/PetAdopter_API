@@ -34,7 +34,8 @@ namespace PetAdopter_API.Services
                     IsPetFriendly = model.IsPetFriendly,
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsLegalInCity = model.IsLegalInCity,
-                    CreatedUtc = DateTimeOffset.Now
+                    CreatedUtc = DateTimeOffset.Now,
+                    AdopterId = 1
                 };
             using (var ctx = new ApplicationDbContext())
             {

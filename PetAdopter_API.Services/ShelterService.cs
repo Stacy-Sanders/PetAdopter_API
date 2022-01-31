@@ -10,11 +10,11 @@ namespace PetAdopter_API.Services
 {
     public class ShelterService
     {
-        private readonly Guid _IdOfShelter;
+        private readonly Guid _userId;
 
-        public ShelterService(Guid IdOfShelter)
+        public ShelterService(Guid userId)
         {
-            _IdOfShelter = IdOfShelter;
+            _userId = userId;
         }
 
         public bool CreateShelter(ShelterCreate model)
@@ -22,9 +22,9 @@ namespace PetAdopter_API.Services
             var entity =
                 new Shelter()
                 {
-                    AdminId = _IdOfShelter,
+                    AdminId = _userId,
                     ShelterId = model.ShelterId,
-                    ShelterName = model.ShelterName,
+                    Name = model.Name,
                     City = model.City,
                     State = model.State,
                     Rating = model.Rating
@@ -42,13 +42,13 @@ namespace PetAdopter_API.Services
                 var query =
                     ctx
                         .Shelters
-                        .Where(e => e.AdminId == _IdOfShelter)
+                        .Where(e => e.AdminId == _userId)
                         .Select(
                         e =>
                             new ShelterListItem
                             {
                                 ShelterId = e.ShelterId,
-                                ShelterName = e.ShelterName,
+                                ShelterName = e.Name,
                                 City = e.City,
                                 State = e.State,
                                 Rating = e.Rating,
@@ -64,12 +64,12 @@ namespace PetAdopter_API.Services
                 var entity = 
                     ctx
                     .Shelters
-                    .Single(e => e.ShelterId == id && e.AdminId == _IdOfShelter);
+                    .Single(e => e.ShelterId == id && e.AdminId == _userId);
                 return
                     new ShelterDetail
                     {
                         ShelterId = entity.ShelterId,
-                        ShelterName = entity.ShelterName,
+                        ShelterName = entity.Name,
                         City = entity.City,
                         State = entity.State,
                         Rating = entity.Rating
@@ -83,9 +83,9 @@ namespace PetAdopter_API.Services
                 var entity =
                     ctx
                         .Shelters
-                        .Single(e => e.ShelterId == model.ShelterId && e.AdminId == _IdOfShelter);
+                        .Single(e => e.ShelterId == model.ShelterId && e.AdminId == _userId);
                 entity.ShelterId = model.ShelterId;
-                entity.ShelterName= model.ShelterName;
+                entity.Name= model.ShelterName;
                 entity.City = model.City;
                 entity.State = model.State;
                 entity.Rating = model.Rating;
@@ -99,7 +99,7 @@ namespace PetAdopter_API.Services
             {
                 var entity =
                     ctx.Shelters
-                        .Single(e => e.ShelterId == shelterId && e.AdminId == _IdOfShelter);
+                        .Single(e => e.ShelterId == shelterId && e.AdminId == _userId);
                 ctx.Shelters.Remove(entity);
 
                 return ctx.SaveChanges() == 1;

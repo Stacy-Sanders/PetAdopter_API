@@ -7,13 +7,13 @@ namespace PetAdopter_API.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class _1st : IMigrationMetadata
+    public sealed partial class _3rd : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_1st));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_3rd));
         
         string IMigrationMetadata.Id
         {
-            get { return "202201311511229_1st"; }
+            get { return "202201311911438_3rd"; }
         }
         
         string IMigrationMetadata.Source
