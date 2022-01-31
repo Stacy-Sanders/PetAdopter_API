@@ -2,32 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class Shelter
+    public class ShelterCreate
     {
         [Key]
-        public int Id { get; set; }
-        [Required]
-        public Guid AdminId { get; set; }
-
         public int ShelterId { get; set; }
-
         [Required]
         public string ShelterName { get; set; }
-
         [Required]
         public string City { get; set; }
-
         [Required]
         public string State { get; set; }
-
         public float Rating { get; set; }
-
-        public List<Domestic> Domestics { get; set; } = new List<Domestic>();
-        public List<Exotic> Exotics { get; set; } = new List<Exotic> ();
-
     }
 }
