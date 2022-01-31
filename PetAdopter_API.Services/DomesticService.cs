@@ -36,7 +36,7 @@ namespace PetAdopter_API.Services
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsDeclawed = model.IsDeclawed,
                     CreatedUtc = DateTimeOffset.Now,
-                    AdopterId= 1
+                    AdopterId = model.AdopterId
                 };
             using (var ctx = new ApplicationDbContext())
             {

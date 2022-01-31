@@ -11,7 +11,8 @@ namespace PetAdopter_API.Models
 
     {
         [Key]
-        public int AdopterId { get; set; }
+        public int AdopterId { get; set; } = 1;
+
         [Required]
         public Guid AdminId { get; set; }
 
@@ -38,16 +39,5 @@ namespace PetAdopter_API.Models
         public virtual List<Domestic> DomesticList { get; set; } = new List<Domestic>();
         public virtual List<Exotic> ExoticList { get; set;} = new List<Exotic>();
 
-        //public AdopterTable() { }
-        //public AdopterTable(int id, string firstName, string lastName, string city, string state, string phoneNumber)
-
-        //{
-        //    Id = id;
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    City = city;
-        //    State = state;
-        //    PhoneNumber = phoneNumber;
-        //}
     }
 }
