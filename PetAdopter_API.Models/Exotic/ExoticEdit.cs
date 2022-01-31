@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,10 @@ namespace PetAdopter_API.Models
         public bool IsHypoallergenic { get; set; }
 
         public bool IsLegalInCity { get; set; }
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
+        [ForeignKey(nameof(Adopter))]
+        public int AdopterId { get; set; }
 
     }
 }

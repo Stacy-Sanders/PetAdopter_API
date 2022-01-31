@@ -66,10 +66,10 @@ namespace PetAdopter_API.Models
         public virtual Adopter Adopter { get; set; }
 
 
-        //[ForeignKey(nameof(Shelter))]
-        //public int ShelterId { get; set; }
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
 
-        //public virtual Shelter Shelter { get; set; }
+        public virtual Shelter Shelter { get; set; }
 
     }
 }

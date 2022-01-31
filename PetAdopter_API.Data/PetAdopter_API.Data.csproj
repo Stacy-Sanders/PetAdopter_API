@@ -91,17 +91,9 @@
     <Compile Include="Domestic.cs" />
     <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202201311832269_1st.cs" />
-    <Compile Include="Migrations\202201311832269_1st.designer.cs">
-      <DependentUpon>202201311832269_1st.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201311845114_2nd.cs" />
-    <Compile Include="Migrations\202201311845114_2nd.designer.cs">
-      <DependentUpon>202201311845114_2nd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201311911438_3rd.cs" />
-    <Compile Include="Migrations\202201311911438_3rd.designer.cs">
-      <DependentUpon>202201311911438_3rd.cs</DependentUpon>
+    <Compile Include="Migrations\202201312004578_1st.cs" />
+    <Compile Include="Migrations\202201312004578_1st.designer.cs">
+      <DependentUpon>202201312004578_1st.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,14 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201311832269_1st.resx">
-      <DependentUpon>202201311832269_1st.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201311845114_2nd.resx">
-      <DependentUpon>202201311845114_2nd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201311911438_3rd.resx">
-      <DependentUpon>202201311911438_3rd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201312004578_1st.resx">
+      <DependentUpon>202201312004578_1st.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

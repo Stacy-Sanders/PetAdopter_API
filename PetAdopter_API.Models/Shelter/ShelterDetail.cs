@@ -13,6 +13,8 @@ namespace PetAdopter_API.Models
         public string City { get; set; }
         public string State { get; set; }
         public float Rating { get; set; }
+        public List<DomesticListItem> ShelterDomesticList { get; set; } = new List<DomesticListItem>();
+        public List<ExoticListItem> ShelterExoticList { get; set;} = new List<ExoticListItem>();
 
     }
 }
