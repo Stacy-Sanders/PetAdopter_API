@@ -53,7 +53,7 @@ namespace PetAdopter_API.Controllers
         //Put (update)
         [HttpPut]
 
-        public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] Adopter updatedAdopter)
+        public IHttpActionResult Put([FromUri] int id, [FromBody] AdopterEdit updatedAdopter)
 
         {
             
@@ -68,7 +68,7 @@ namespace PetAdopter_API.Controllers
         }
 
         //Delete (delete)
-        [HttpDelete]
+        
         public IHttpActionResult Delete( int id)
         {
             var service = CreateAdopterService();
