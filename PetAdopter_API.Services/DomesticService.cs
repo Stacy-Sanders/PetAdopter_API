@@ -36,7 +36,8 @@ namespace PetAdopter_API.Services
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsDeclawed = model.IsDeclawed,
                     CreatedUtc = DateTimeOffset.Now,
-                    AdopterId= 1
+                    AdopterId= 1,
+                    ShelterId = model.ShelterId,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -92,7 +93,8 @@ namespace PetAdopter_API.Services
                         IsHypoallergenic = entity.IsHypoallergenic,
                         IsHouseTrained = entity.IsHouseTrained,
                         IsDeclawed = entity.IsDeclawed,
-                        CreatedUtc = entity.CreatedUtc
+                        CreatedUtc = entity.CreatedUtc,
+                        ShelterId = entity.ShelterId,
                     };
 
             }

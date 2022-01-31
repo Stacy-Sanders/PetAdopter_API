@@ -40,6 +40,8 @@ namespace PetAdopter_API.Models
 
         [ForeignKey(nameof(Adopter))]
         public int AdopterId { get; set; }
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
        
 
         //[ForeignKey(nameof(Shelter))]
