@@ -22,7 +22,6 @@ namespace PetAdopter_API.Services
             var entity =
                 new Shelter()
                 {
-                    AdminId = _userId,
                     ShelterId = model.ShelterId,
                     Name = model.Name,
                     City = model.City,
@@ -42,13 +41,12 @@ namespace PetAdopter_API.Services
                 var query =
                     ctx
                         .Shelters
-                        .Where(e => e.AdminId == _userId)
                         .Select(
                         e =>
                             new ShelterListItem
                             {
                                 ShelterId = e.ShelterId,
-                                ShelterName = e.Name,
+                                Name = e.Name,
                                 City = e.City,
                                 State = e.State,
                                 Rating = e.Rating,
@@ -64,7 +62,7 @@ namespace PetAdopter_API.Services
                 var entity = 
                     ctx
                     .Shelters
-                    .Single(e => e.ShelterId == id && e.AdminId == _userId);
+                    .Single(e => e.ShelterId == id);
                 return
                     new ShelterDetail
                     {
@@ -76,14 +74,14 @@ namespace PetAdopter_API.Services
                     };
             }
         }
-        public bool UpdateAdopter(ShelterEdit model)
+        public bool UpdateShelter(ShelterEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Shelters
-                        .Single(e => e.ShelterId == model.ShelterId && e.AdminId == _userId);
+                        .Single(e => e.ShelterId == model.ShelterId);
                 entity.ShelterId = model.ShelterId;
                 entity.Name= model.ShelterName;
                 entity.City = model.City;
@@ -99,7 +97,7 @@ namespace PetAdopter_API.Services
             {
                 var entity =
                     ctx.Shelters
-                        .Single(e => e.ShelterId == shelterId && e.AdminId == _userId);
+                        .Single(e => e.ShelterId == shelterId);
                 ctx.Shelters.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
