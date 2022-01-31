@@ -57,7 +57,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AdopterCreate.cs" />
+    <Compile Include="AdopterDetail.cs" />
+    <Compile Include="AdopterEdit.cs" />
+    <Compile Include="AdopterListItem.cs" />
+    <Compile Include="AdopterPetList.cs" />
+    <Compile Include="DomesticCreate.cs" />
+    <Compile Include="DomesticDetail.cs" />
+    <Compile Include="DomesticEdit.cs" />
+    <Compile Include="DomesticListItem.cs" />
+    <Compile Include="ExoticCreate.cs" />
+    <Compile Include="ExoticDetail.cs" />
+    <Compile Include="ExoticEdit.cs" />
+    <Compile Include="ExoticListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

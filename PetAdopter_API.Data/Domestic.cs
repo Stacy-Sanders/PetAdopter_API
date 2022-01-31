@@ -8,10 +8,13 @@ using System.Web;
 namespace PetAdopter_API.Models
 {
 
-    public class DomesticTable
+    public class Domestic
     {
         [Key]
-        public int Id { get; set; }
+        public int DomesticId { get; set; }
+
+        [Required]
+        public Guid AdminId { get; set; }
 
         [Required]
         public string Species { get; set; }
@@ -27,19 +30,20 @@ namespace PetAdopter_API.Models
         public bool IsSterile { get; set; }
 
         [Required]
-        public DateTimeOffset BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public float Age
         {
 
             get
             {
-                TimeSpan age = DateTimeOffset.Now - BirthDate;
+                TimeSpan age = DateTime.Now - BirthDate;
                 return (int)Math.Floor(age.TotalDays / 365.24);
             }
 
         }
 
+        // [Required]
         public bool IsAdoptionPending { get; set; }
 
         public bool IsKidFriendly { get; set; }
@@ -49,29 +53,22 @@ namespace PetAdopter_API.Models
         public bool IsHypoallergenic { get; set; }
 
         public bool IsHouseTrained { get; set; }
+
         public bool IsDeclawed { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUtc { get; set; }
+
+        public DateTimeOffset? ModifiedUtc { get; set; }
+        [ForeignKey(nameof(Adopter))]
+        public int AdopterID { get; set; }
+        public virtual Adopter Adopter { get; set; }
 
 
         //[ForeignKey(nameof(Shelter))]
-      //  public int ShelterId { get; set; }
+        //public int ShelterId { get; set; }
 
         //public virtual Shelter Shelter { get; set; }
-        public DomesticTable() { }
 
-        public DomesticTable(string species, string name, string breed, string sex, bool isSterile, DateTime birthDate, bool isAdoptionPending, bool isKidFriendly, bool isPetFriendly, bool isHypoallergenic, bool isdeclawed)
-        {
-            Species = species;
-            Name = name;
-            Breed = breed;
-            Sex = sex;
-            IsSterile = isSterile;
-            BirthDate = birthDate;
-            IsAdoptionPending = isAdoptionPending;
-            IsKidFriendly = isKidFriendly;
-            IsPetFriendly = isPetFriendly;
-            IsHypoallergenic = isHypoallergenic;
-            //ShelterId = shelterId;
-            IsDeclawed = isdeclawed;
-        }
     }
 }

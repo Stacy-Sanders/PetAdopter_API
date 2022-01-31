@@ -1,5 +1,7 @@
-﻿using PetAdopter_API.Data;
+﻿using Microsoft.AspNet.Identity;
+using PetAdopter_API.Data;
 using PetAdopter_API.Models;
+using PetAdopter_API.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,85 +21,59 @@ namespace PetAdopter_API.Controllers
 
         //Post(Create)
         [HttpPost]
-        public async Task<IHttpActionResult> CreateAdopter([FromBody] AdopterTable model)
+        private AdopterService CreateAdopterService()
         {
-            if (model is null)
-            {
-                return BadRequest("You need a request body");
-            }
-            if (ModelState.IsValid)
-            {
-                _context.Adopter.Add(model);
-                int changeCount = await _context.SaveChangesAsync();
-            }
-            return Ok(ModelState);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var AdopterService = new AdopterService(userId);
+            return AdopterService;
+        
+        
         }
 
         //Get All
-        [HttpGet]
-        public async Task<IHttpActionResult> GetAll()
+        [HttpPost]
+        public IHttpActionResult GetAll(AdopterCreate adopter)
         {
-            List<AdopterTable> adopters = await _context.Adopter.ToListAsync();
-            return Ok(adopters);
+
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            var service = CreateAdopterService();
+            if (!service.AdopterCreate(adopter)) { return InternalServerError(); }
+            return Ok($"New Adopter {adopter.AdopterId} created!");
         }
 
         //Get By ID
         [HttpGet]
-        public async Task<IHttpActionResult> GetById([FromUri] int id)
+        public IHttpActionResult Get( int id)
         {
-            AdopterTable adopter = await _context.Adopter.FindAsync(id);
-
-            if (adopter != null)
-            {
-                return Ok(adopter);
-            }
-            return NotFound();
+            AdopterService service = CreateAdopterService();
+            var adopter = service.GetAdopterById(id);
+            return Ok(adopter);
         }
 
         //Put (update)
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] AdopterTable updatedAdopter)
+
+        public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] Adopter updatedAdopter)
+
         {
-            if (id != updatedAdopter?.Id)
-            {
-                return BadRequest("Ids do not match.");
-            }
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            
+            if (!ModelState.IsValid)return BadRequest(ModelState);
 
-            AdopterTable adopter = await _context.Adopter.FindAsync(id);
+            var service = CreateAdopterService();
 
-            if (adopter is null)
-                return NotFound();
+            if (!service.UpdateAdopter(updatedAdopter))return InternalServerError();
 
-            adopter.FirstName = updatedAdopter.FirstName;
-            adopter.LastName = updatedAdopter.LastName;
-            adopter.State = updatedAdopter.State;
-            adopter.City = updatedAdopter.City;
-            adopter.PhoneNumber = updatedAdopter.PhoneNumber;
+            return Ok($" {updatedAdopter} was updated");
 
-
-            await _context.SaveChangesAsync();
-
-            return Ok("The Adopter was updated");
         }
 
         //Delete (delete)
         [HttpDelete]
-        public async Task<IHttpActionResult> DeleteAdopter([FromUri] int id)
+        public IHttpActionResult Delete( int id)
         {
-            AdopterTable adopter = await _context.Adopter.FindAsync(id);
-            if (adopter is null)
-                return NotFound();
-
-            _context.Adopter.Remove(adopter);
-
-            if (await _context.SaveChangesAsync() == 1)
-            {
-                return Ok("The Adopter was deleted");
-            }
-
-            return InternalServerError();
+            var service = CreateAdopterService();
+            if (!service.DeleteAdopter(id))return InternalServerError();
+            return Ok($"Successfully Deleted Adopter {id} ");
         }
     }
 }

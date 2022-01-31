@@ -28,15 +28,17 @@ namespace PetAdopter_API.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public DbSet<DomesticTable> Domestics { get; set; }
-        public DbSet<ExoticTable> Exotics { get; set; }
-        public DbSet<Shelter> Shelters { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-        public DbSet<AdopterTable> Adopter { get; set; }
+
+        public DbSet<Domestic> Domestics { get; set; }
+        public DbSet<Exotic> Exotics { get; set; }
+        public DbSet<Shelter> Shelters { get; set; }
+        public DbSet<Adopter> Adopter { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
