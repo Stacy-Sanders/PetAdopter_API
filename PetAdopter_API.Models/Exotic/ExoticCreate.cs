@@ -38,6 +38,8 @@ namespace PetAdopter_API.Models
 
         [Required]
         public bool IsLegalInCity { get; set; }
+        [ForeignKey(nameof(Adopter))]
+        public int AdopterId { get; set; }
 
         //[ForeignKey(nameof(Shelter))]
         //public int ShelterId { get; set; }

@@ -34,7 +34,7 @@ namespace PetAdopter_API.Models
 
         public DateTimeOffset? ModifiedUtc { get; set; }
 
-
+       
         public virtual List<Domestic> DomesticList { get; set; } = new List<Domestic>();
         public virtual List<Exotic> ExoticList { get; set;} = new List<Exotic>();
 
