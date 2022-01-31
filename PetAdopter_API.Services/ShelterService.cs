@@ -10,12 +10,12 @@ namespace PetAdopter_API.Services
 {
     public class ShelterService
     {
-        //private readonly Guid _IdOfShelter;
+        private readonly Guid _userId;
 
-        //public ShelterService(Guid IdOfShelter)
-        //{
-        //    _IdOfShelter = IdOfShelter;
-        //}
+        public ShelterService(Guid userId)
+        {
+            _userId = userId;
+        }
 
         public bool CreateShelter(ShelterCreate model)
         {
@@ -23,7 +23,7 @@ namespace PetAdopter_API.Services
                 new Shelter()
                 {
                     ShelterId = model.ShelterId,
-                    Name = model.ShelterName,
+                    Name = model.Name,
                     City = model.City,
                     State = model.State,
                     Rating = model.Rating
