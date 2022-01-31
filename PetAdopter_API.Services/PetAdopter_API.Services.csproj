@@ -61,6 +61,7 @@
     <Compile Include="DomesticService.cs" />
     <Compile Include="ExoticService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShelterService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetAdopter_API.Data\PetAdopter_API.Data.csproj">
