@@ -32,7 +32,7 @@ namespace PetAdopter_API.Controllers
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
             var service = CreateShelterService();
             if (!service.CreateShelter(shelter)) { return InternalServerError(); }
-            return Ok($"Shelter '{shelter.ShelterName}' has been added to the database.");
+            return Ok($"Shelter '{shelter.Name}' has been added to the database.");
         }
 
         //Get all shelters
