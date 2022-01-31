@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace PetAdopter_API.Services
 {
-    public class DomesticService
+    public class ExoticService
     {
         private readonly Guid _userId;
 
-        public DomesticService(Guid userId)
+        public ExoticService(Guid userId)
         {
             _userId = userId;
         }
 
-        public bool CreateDomestic(DomesticCreate model)
+        public bool CreateExotic(ExoticCreate model)
         {
             var entity =
-                new Domestic()
+                new Exotic()
                 {
                     AdminId = _userId,
                     Species = model.Species,
@@ -32,53 +32,52 @@ namespace PetAdopter_API.Services
                     IsAdoptionPending = model.IsAdoptionPending,
                     IsKidFriendly = model.IsKidFriendly,
                     IsPetFriendly = model.IsPetFriendly,
-                    IsHouseTrained = model.IsHouseTrained,
                     IsHypoallergenic = model.IsHypoallergenic,
-                    IsDeclawed = model.IsDeclawed,
+                    IsLegalInCity = model.IsLegalInCity,
                     CreatedUtc = DateTimeOffset.Now
                 };
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Domestics.Add(entity);
+                ctx.Exotics.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<DomesticListItem> GetDomestics()
+        public IEnumerable<ExoticListItem> GetExotics()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Domestics
+                        .Exotics
                         .Where(e => e.AdminId == _userId)
                         .Select(
                             e =>
-                                new DomesticListItem
+                                new ExoticListItem
                                 {
-                                    DomesticId = e.DomesticId,
+                                    ExoticId = e.ExoticId,
                                     Species = e.Species,
                                     Name = e.Name,
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
-                
+
                 return query.ToArray();
             }
         }
 
-        public DomesticDetail GetDomesticById(int id)
+        public ExoticDetail GetExoticById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Domestics
-                        .Single(e => e.DomesticId == id && e.AdminId == _userId);
+                        .Exotics
+                        .Single(e => e.ExoticId == id && e.AdminId == _userId);
                 return
-                    new DomesticDetail 
-                    { 
-                        DomesticId = entity.DomesticId,
+                    new ExoticDetail
+                    {
+                        ExoticId = entity.ExoticId,
                         Species = entity.Species,
                         Name = entity.Name,
                         Breed = entity.Breed,
@@ -89,57 +88,44 @@ namespace PetAdopter_API.Services
                         IsKidFriendly = entity.IsKidFriendly,
                         IsPetFriendly = entity.IsPetFriendly,
                         IsHypoallergenic = entity.IsHypoallergenic,
-                        IsHouseTrained = entity.IsHouseTrained,
-                        IsDeclawed = entity.IsDeclawed,
+                        IsLegalInCity = entity.IsLegalInCity,
                         CreatedUtc = entity.CreatedUtc
                     };
 
             }
         }
 
-        public bool UpdateDomestic(DomesticEdit model)
+        public bool UpdateExotic(ExoticEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Domestics
-                        .Single(e => e.DomesticId == model.DomesticId && e.AdminId == _userId);
+                        .Exotics
+                        .Single(e => e.ExoticId == model.ExoticId && e.AdminId == _userId);
 
                 entity.Species = model.Species;
                 entity.Name = model.Name;
-                entity.Breed = model.Breed;
-                entity.Sex = model.Sex;
-                entity.IsSterile = model.IsSterile;
-                entity.BirthDate = model.BirthDate;
-                entity.IsAdoptionPending = model.IsAdoptionPending;
-                entity.IsKidFriendly = model.IsKidFriendly;
-                entity.IsPetFriendly = model.IsPetFriendly;
-                entity.IsHypoallergenic = model.IsHypoallergenic;
-                entity.IsHouseTrained = model.IsHouseTrained;
-                entity.IsDeclawed = model.IsDeclawed;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
-                
+
             }
         }
 
-        public bool DeleteDomestic(int domesticId)
+        public bool DeleteExotic(int exoticId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Domestics
-                        .Single(e => e.DomesticId == domesticId && e.AdminId == _userId);
+                        .Exotics
+                        .Single(e => e.ExoticId == exoticId && e.AdminId == _userId);
 
-                ctx.Domestics.Remove(entity);
+                ctx.Exotics.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
     }
 }
-
-        
