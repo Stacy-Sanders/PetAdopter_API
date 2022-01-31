@@ -76,7 +76,7 @@ namespace PetAdopter_API.Services
                     };
             }
         }
-        public bool UpdateShelter(ShelterEdit model)
+        public bool UpdateAdopter(ShelterEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -85,7 +85,7 @@ namespace PetAdopter_API.Services
                         .Shelters
                         .Single(e => e.ShelterId == model.ShelterId && e.AdminId == _userId);
                 entity.ShelterId = model.ShelterId;
-                entity.Name = model.ShelterName; 
+                entity.Name= model.ShelterName;
                 entity.City = model.City;
                 entity.State = model.State;
                 entity.Rating = model.Rating;
