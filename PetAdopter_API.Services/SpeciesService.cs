@@ -1,5 +1,6 @@
 ﻿using PetAdopter_API.Data;
 using PetAdopter_API.Models;
+using PetAdopter_API.Models.Species;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,24 +16,24 @@ namespace PetAdopter_API.Services
         {
             _userId = userId;
         }
-        public DomesticDetail GetSpecies(string species)
+        public IEnumerable<SpeciesListItem> GetSpecies(SpeciesListItem species)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Domestics.Single(x => x.Species == species && x.AdminId == _userId);
-                return new DomesticDetail
+                var entity = ctx.Domestics.Where(e => e.Species ==  $"{species}" && e.AdminId == _userId).Select(e=> new SpeciesListItem
+                
                 {
-                    Species = entity.Species,
-                    Name = entity.Name,
-                    ShelterId = entity.ShelterId,
-                    Breed = entity.Breed,
-                    Sex = entity.Sex,
-                    BirthDate = entity.BirthDate,
-                    IsAdoptionPending = entity.IsAdoptionPending,
-                    CreatedUtc = entity.CreatedUtc,
+                    Species = e.Species,
+                    Name = e.Name,
+                    ShelterId = e.ShelterId,
+                    Breed = e.Breed,
+                    Sex = e.Sex,
+                    Birthdate = e.BirthDate,
+                    IsAdoptionPending = e.IsAdoptionPending,
+                    CreatedUtc = e.CreatedUtc,
+                }) ;
 
-
-                };
+                return entity;
             }
         }
     }
