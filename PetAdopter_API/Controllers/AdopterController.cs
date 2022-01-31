@@ -20,7 +20,7 @@ namespace PetAdopter_API.Controllers
 
 
         //Post(Create)
-        [HttpPost]
+       
         private AdopterService CreateAdopterService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -30,7 +30,7 @@ namespace PetAdopter_API.Controllers
         
         }
 
-        //Get All
+        
         [HttpPost]
         public IHttpActionResult GetAll(AdopterCreate adopter)
         {
@@ -43,13 +43,19 @@ namespace PetAdopter_API.Controllers
 
         //Get By ID
         [HttpGet]
-        public IHttpActionResult Get( int id)
+        public IHttpActionResult Get()
+        {
+            AdopterService adopterService = CreateAdopterService();
+            var adopters = adopterService.GetAdopters();
+            return Ok(adopters);
+
+        }
+        public IHttpActionResult GetById( int id)
         {
             AdopterService service = CreateAdopterService();
             var adopter = service.GetAdopterById(id);
             return Ok(adopter);
         }
-
         //Put (update)
         [HttpPut]
 
@@ -63,7 +69,7 @@ namespace PetAdopter_API.Controllers
 
             if (!service.UpdateAdopter(updatedAdopter))return InternalServerError();
 
-            return Ok($" {updatedAdopter} was updated");
+            return Ok($" Adopter {updatedAdopter.FirstName} was updated");
 
         }
 
