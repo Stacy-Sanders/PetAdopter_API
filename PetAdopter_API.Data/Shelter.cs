@@ -9,9 +9,9 @@ namespace PetAdopter_API.Models
     public class Shelter
     {
         [Key]
-        public int Id { get; set; }
-
         public int ShelterId { get; set; }
+
+        public Guid AdminId { get; set; }
 
         [Required]
         public string Name { get; set; }
