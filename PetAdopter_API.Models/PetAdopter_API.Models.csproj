@@ -71,6 +71,10 @@
     <Compile Include="Exotic\ExoticEdit.cs" />
     <Compile Include="Exotic\ExoticListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shelter\ShelterCreate.cs" />
+    <Compile Include="Shelter\ShelterDetail.cs" />
+    <Compile Include="Shelter\ShelterEdit.cs" />
+    <Compile Include="Shelter\ShelterListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetAdopter_API.Data\PetAdopter_API.Data.csproj">
@@ -84,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Account\" />
-    <Folder Include="Shelter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
