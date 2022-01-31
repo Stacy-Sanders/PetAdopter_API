@@ -362,10 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-.Migrations/
-/PetAdopter_API.Data/Migrations/202201311533569_adopter.cs
-/PetAdopter_API.Data/Migrations/202201311533569_adopter.Designer.cs
-/PetAdopter_API.Data/Migrations/202201311533569_adopter.resx
-/PetAdopter_API.Data/Migrations/202201311942523_FKUpdate.cs
-/PetAdopter_API.Data/Migrations/202201311942523_FKUpdate.Designer.cs
-/PetAdopter_API.Data/Migrations/202201311942523_FKUpdate.resx
+Migrations/
