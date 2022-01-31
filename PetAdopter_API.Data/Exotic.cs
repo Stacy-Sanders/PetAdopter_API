@@ -58,6 +58,11 @@ namespace PetAdopter_API.Models
 
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
+        [ForeignKey(nameof(Adopter))]
+        public int AdopterID { get; set; }
+        public virtual Adopter Adopter { get; set; }
+
+
 
         [ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
