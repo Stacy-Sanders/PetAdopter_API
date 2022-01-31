@@ -11,7 +11,7 @@ namespace PetAdopter_API.Models
 
     {
         [Key]
-        public int Id { get; set; }
+        public int AdopterId { get; set; }
 
         [Required]
         public string FirstName { get; set; }

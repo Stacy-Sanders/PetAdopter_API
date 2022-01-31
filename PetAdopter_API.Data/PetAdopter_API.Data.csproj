@@ -91,9 +91,9 @@
     <Compile Include="Domestic.cs" />
     <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202201281502321_InitialMigration.cs" />
-    <Compile Include="Migrations\202201281502321_InitialMigration.designer.cs">
-      <DependentUpon>202201281502321_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202201302144051_Exotic.cs" />
+    <Compile Include="Migrations\202201302144051_Exotic.designer.cs">
+      <DependentUpon>202201302144051_Exotic.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,8 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201281502321_InitialMigration.resx">
-      <DependentUpon>202201281502321_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201302144051_Exotic.resx">
+      <DependentUpon>202201302144051_Exotic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

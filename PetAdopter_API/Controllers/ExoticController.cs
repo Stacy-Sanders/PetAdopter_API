@@ -1,5 +1,7 @@
-﻿using PetAdopter_API.Data;
+﻿using Microsoft.AspNet.Identity;
+using PetAdopter_API.Data;
 using PetAdopter_API.Models;
+using PetAdopter_API.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,92 +13,80 @@ using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
 {
+    [Authorize]
     public class ExoticController : ApiController
     {
-        private readonly ApplicationDbContext _exotic = new ApplicationDbContext();
 
-        //create
-        [HttpPost]
-        public async Task<IHttpActionResult> CreateExotic([FromBody] Exotic exotic)
+        // Create ExoticService
+        private ExoticService CreateExoticService()
         {
-            if (exotic is null)
-            {
-                return BadRequest("Your request body cannot be empty");
-            }
-            if (ModelState.IsValid)
-            {
-                _exotic.Exotics.Add(exotic);
-                int changeCount = await _exotic.SaveChangesAsync();
 
-                return Ok("Your pet has been posted!");
-            }
-            return BadRequest(ModelState);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var ExoticService = new ExoticService(userId);
+            return ExoticService;
+
         }
 
-        //Get all exotics
-        [HttpGet]
-        public async Task<IHttpActionResult> GetAllExotic()
+        // POST
+        public IHttpActionResult Post(ExoticCreate exotic)
         {
-            List<Exotic> exotics = await _exotic.Exotics.ToListAsync();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateExoticService();
+
+            if (!service.CreateExotic(exotic))
+                return InternalServerError();
+
+            return Ok("New exotic pet has been posted for adoption!");
+        }
+
+        // GET ALL
+        public IHttpActionResult Get()
+        {
+
+            ExoticService exoticService = CreateExoticService();
+            var exotics = exoticService.GetExotics();
             return Ok(exotics);
+
         }
-        //Get By Species
-        [HttpGet]
-        public async Task<IHttpActionResult> GetBySpecies([FromUri] string species)
+
+        // GET by ID
+        public IHttpActionResult Get(int id)
         {
 
-            var exotic = await _exotic.Exotics.Where(x => x.Species == species).ToListAsync();
-
-
-            if (exotic is null)
-            {
-                return NotFound();
-            }
+            ExoticService exoticService = CreateExoticService();
+            var exotic = exoticService.GetExoticById(id);
             return Ok(exotic);
+
         }
-        [HttpPut]
-        public async Task<IHttpActionResult> UpdateExotic([FromUri] int id, [FromBody] Exotic updatedExotic)
+
+        // PUT (update)
+        public IHttpActionResult Put(ExoticEdit exotic)
         {
-            if (id != updatedExotic.Id)
-            {
-                return BadRequest("Please enter a valid Id");
-            }
-            Exotic exotic = await _exotic.Exotics.FindAsync(id);
-            if (exotic is null)
-            {
-                return NotFound();
-            }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            exotic.Name = updatedExotic.Name;
-            exotic.Sex = updatedExotic.Sex;
-            exotic.Breed = updatedExotic.Breed;
-            exotic.Birthdate = updatedExotic.Birthdate;
-            exotic.IsAdoptionPending = updatedExotic.IsAdoptionPending;
-            exotic.IsKidFriendly = updatedExotic.IsKidFriendly;
-            exotic.IsPetFriendly = updatedExotic.IsPetFriendly;
-            exotic.IsLegalInCity = updatedExotic.IsLegalInCity;
-            //exotic.ShelterId = updatedExotic.ShelterId;
-            exotic.Sterile = updatedExotic.Sterile;
-            exotic.IsHypoallergenic = updatedExotic.IsHypoallergenic;
 
-            await _exotic.SaveChangesAsync();
+            var service = CreateExoticService();
 
-            return Ok("The animals info has been saved");
+            if (!service.UpdateExotic(exotic))
+                return InternalServerError();
+
+            return Ok("Your Exotic pet information has been updated.");
+
         }
-        [HttpDelete]
-        public async Task<IHttpActionResult> DeleteExotic([FromUri] int id)
+
+        // DELETE
+        public IHttpActionResult Delete(int id)
         {
-            Exotic exotic = await _exotic.Exotics.FindAsync(id);
-            if (exotic == null)
-                return NotFound();
+            var service = CreateExoticService();
 
-            _exotic.Exotics.Remove(exotic);
+            if (!service.DeleteExotic(id))
+                return InternalServerError();
 
-            if (await _exotic.SaveChangesAsync() == 1)
-            {
-                return Ok("The pet has been removed");
-            }
-            return BadRequest();
+            return Ok("Success. The Exotic pet has been deleted from the database.");
         }
-    }
+
+    } 
 }

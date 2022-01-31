@@ -53,7 +53,7 @@ namespace PetAdopter_API.Controllers
         //Put (update)
         [HttpPut]
 
-        public IHttpActionResult Put( AdopterEdit updatedAdopter)
+        public async Task<IHttpActionResult> UpdateAdopter([FromUri] int id, [FromBody] Adopter updatedAdopter)
 
         {
             
