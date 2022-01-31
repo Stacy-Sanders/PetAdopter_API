@@ -1,109 +1,68 @@
-﻿//using PetAdopter_API.Data;
-//using PetAdopter_API.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.Data.Entity;
-//using System.Linq;
-//using System.Net;
-//using System.Net.Http;
-//using System.Threading.Tasks;
-//using System.Web.Http;
+﻿using Microsoft.AspNet.Identity;
+using PetAdopter_API.Data;
+using PetAdopter_API.Models;
+using PetAdopter_API.Services;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Http;
 
-//namespace PetAdopter_API.Controllers
-//{
-//    public class ShelterController : ApiController
-//    {
-//        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+namespace PetAdopter_API.Controllers
+{
+    public class ShelterController : ApiController
+    {
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
+        //Post
+        //Create shelter service to be used for other methods
+        private ShelterService CreateShelterService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var ShelterService = new ShelterService(userId);
+            return ShelterService;
+        }
 
-//        //Post(Create)
-//        [HttpPost]
-//        public async Task<IHttpActionResult> CreateShelter([FromBody] Shelter model)
-//        {
-//            if (!ModelState.IsValid)
-//            {
-//                return BadRequest("You need a request body");
-//            }
-//            if (ModelState.IsValid)
-//            {
-//                _context.Shelters.Add(model);
-//                int changeCount = await _context.SaveChangesAsync();
-//                return Ok();
-//            }
-//            return BadRequest(ModelState);
-//        }
+        [HttpPost]
+        public IHttpActionResult CreateShelter(ShelterCreate shelter)
+        {
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            var service = CreateShelterService();
+            if (!service.CreateShelter(shelter)) { return InternalServerError(); }
+            return Ok($"Shelter '{shelter.ShelterName}' has been added to the database.");
+        }
 
-//        //Get All
-//        [HttpGet]
-//        public async Task<IHttpActionResult> GetAll()
-//        {
-//            List<Shelter> shelters = await _context.Shelters.ToListAsync();
-//            return Ok(shelters);
-//        }
-
-//        //Get By ID
-//        [HttpGet]
-//        public async Task<IHttpActionResult> GetById([FromUri] int id)
-//        {
-//            Shelter shelter = await _context.Shelters.FindAsync(id);
-
-//            if (shelter != null)
-//            {
-//                return Ok(shelter);
-//            }
-//            return NotFound();
-//        }
-
-//        //Put (update)
-//        [HttpPut]
-//        public async Task<IHttpActionResult> UpdateShelter([FromBody] int id, [FromBody] Shelter updatedShelter)
-//        {
-//            if (id != updatedShelter?.ShelterId)
-//            {
-//                return BadRequest("Ids do not match.");
-//            }
-//            if (!ModelState.IsValid)
-//                return BadRequest(ModelState);
-
-//            Shelter shelter = await _context.Shelters.FindAsync(id);
-
-//            if (shelter is null)
-//                return NotFound();
-
-//            shelter.ShelterName = updatedShelter.ShelterName;
-//            shelter.State = updatedShelter.State;
-//            shelter.City = updatedShelter.City;
-//            shelter.Rating = updatedShelter.Rating;
-
-//            await _context.SaveChangesAsync();
-
-//            return Ok("The shelter was updated");
-//        }
-
-//        //Delete (delete)
-//        [HttpDelete]
-//        public async Task<IHttpActionResult> DeleteShelter([FromUri] int id)
-//        {
-//            Shelter shelter = await _context.Shelters.FindAsync(id);
-//            if (shelter is null)
-//                return NotFound();
-
-//            _context.Shelters.Remove(shelter);
-
-//            if (await _context.SaveChangesAsync() == 1)
-//            {
-//                return Ok("The shelter was deleted");
-//            }
-
-//            return InternalServerError();
-//        }
-//        [HttpGet]
-//        public async Task<IHttpActionResult> GetAllDomestics ([FromUri] int id)
-//        {
-//            var domestic = await _context.Domestics.Where(x => x.ShelterId == id).ToListAsync();
-//            if (domestic is null) { return NotFound(); }
-//            await _context.Domestics.ToListAsync();
-//            return Ok(domestic);
-//        }
-//    }
-//}
+        //Get all shelters
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            ShelterService shelterService = CreateShelterService();
+            var shelter = shelterService.GetShelters();
+            return Ok(shelter);
+        }
+        //Get shelters by Id
+        public IHttpActionResult GetShelterById(int id)
+        {
+            ShelterService service = CreateShelterService();
+            var shelter = service.GetShelterById(id);
+            return Ok(shelter);
+        }
+        [HttpPut]
+        public IHttpActionResult Put([FromUri] ShelterEdit updateShelter)
+        {
+            if (!ModelState.IsValid)return BadRequest(ModelState);
+            var service = CreateShelterService();
+            if (!service.UpdateShelter(updateShelter))return InternalServerError();
+            return Ok($"Shelter '{updateShelter.ShelterName}' has been updated.");
+        }
+        public IHttpActionResult Delete (int id)
+        {
+            var service = CreateShelterService();
+            if (!service.DeleteShelter(id))return InternalServerError();
+            return Ok("Shelter Deleted");
+        }
+    }
+}
