@@ -3,36 +3,30 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class Exotic
+    public class DomesticDetail
     {
-        [Key]
-        public int ExoticId { get; set; }
+        public int DomesticId { get; set; }
 
-        [Required]
-        public Guid AdminId { get; set; }
-
-        [Required]
         public string Species { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
-        // [Required]
         public string Breed { get; set; }
 
-        [Required]
         public string Sex { get; set; }
 
-        // [Required]
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
+
+
         public bool IsSterile { get; set; }
 
-        [Required]
         public DateTime BirthDate { get; set; }
-        
 
         public float Age
         {
@@ -44,35 +38,24 @@ namespace PetAdopter_API.Models
             }
 
         }
-        [Required]
+
         public bool IsAdoptionPending { get; set; }
 
-        // [Required]
         public bool IsKidFriendly { get; set; }
 
-        // [Required]
         public bool IsPetFriendly { get; set; }
 
-        // [Required]
         public bool IsHypoallergenic { get; set; }
 
-        [Required]
-        public bool IsLegalInCity { get; set; }
+        public bool IsHouseTrained { get; set; }
 
-        [Required]
+        public bool IsDeclawed { get; set; }
+
+        [Display(Name="Created")]
         public DateTimeOffset CreatedUtc { get; set; }
+
+        [Display(Name ="Modified")]
         public DateTimeOffset? ModifiedUtc { get; set; }
-
-        [ForeignKey(nameof(Adopter))]
-        public int AdopterId { get; set; }
-        public virtual Adopter Adopter { get; set; }
-
-
-
-        
-        [ForeignKey(nameof(Shelter))]
-        public int ShelterId { get; set; }
-        public virtual Shelter Shelter { get; set; }
 
     }
 }

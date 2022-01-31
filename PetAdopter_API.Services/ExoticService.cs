@@ -34,7 +34,9 @@ namespace PetAdopter_API.Services
                     IsPetFriendly = model.IsPetFriendly,
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsLegalInCity = model.IsLegalInCity,
-                    CreatedUtc = DateTimeOffset.Now
+                    CreatedUtc = DateTimeOffset.Now,
+                    AdopterId = model.AdopterId,
+                    ShelterId = model.ShelterId,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -89,7 +91,8 @@ namespace PetAdopter_API.Services
                         IsPetFriendly = entity.IsPetFriendly,
                         IsHypoallergenic = entity.IsHypoallergenic,
                         IsLegalInCity = entity.IsLegalInCity,
-                        CreatedUtc = entity.CreatedUtc
+                        CreatedUtc = entity.CreatedUtc,
+                        ShelterId = entity.ShelterId,
                     };
 
             }

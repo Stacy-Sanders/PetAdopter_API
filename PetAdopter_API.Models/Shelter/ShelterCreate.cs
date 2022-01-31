@@ -7,23 +7,16 @@ using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class AdopterListItem
+    public class ShelterCreate
     {
-        public int AdopterId { get; set; }
-
-
-        public string FirstName { get; set; }
-
-
-        public string LastName { get; set; }
-
-
+        [Key]
+        public int ShelterId { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
         public string City { get; set; }
-
-
+        [Required]
         public string State { get; set; }
-
-        [Display(Name = "Created")]
-        public DateTimeOffset CreatedUtc { get; set; }
+        public float Rating { get; set; }
     }
 }

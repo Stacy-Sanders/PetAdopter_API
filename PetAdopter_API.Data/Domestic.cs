@@ -60,15 +60,16 @@ namespace PetAdopter_API.Models
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }
+
         [ForeignKey(nameof(Adopter))]
-        public int AdopterID { get; set; }
+        public int AdopterId { get; set; }
         public virtual Adopter Adopter { get; set; }
 
 
-        //[ForeignKey(nameof(Shelter))]
-        //public int ShelterId { get; set; }
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
 
-        //public virtual Shelter Shelter { get; set; }
+        public virtual Shelter Shelter { get; set; }
 
     }
 }

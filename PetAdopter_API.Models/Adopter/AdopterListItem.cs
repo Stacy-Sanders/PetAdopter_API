@@ -7,30 +7,25 @@ using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class AdopterCreate
-
+    public class AdopterListItem
     {
-        [Key]
         public int AdopterId { get; set; }
 
-        [Required]
+
         public string FirstName { get; set; }
 
-        [Required]
+
         public string LastName { get; set; }
 
-        [Required]
+
         public string City { get; set; }
 
-        [Required]
+
         public string State { get; set; }
 
-        [Required]
-        public string PhoneNumber { get; set; }
-        [Required]
+        [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
-
-        public DateTimeOffset? ModifiedUtc { get; set; }
+        [Display(Name ="Updated")]
+        public DateTimeOffset? ModifiedUtc { get;set; }
     }
 }
-

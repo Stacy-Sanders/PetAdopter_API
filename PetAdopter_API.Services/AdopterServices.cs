@@ -55,7 +55,8 @@ namespace PetAdopter_API.Services
                                     LastName = e.LastName,
                                     City = e.City,
                                     State = e.State,
-                                    CreatedUtc = e.CreatedUtc
+                                    CreatedUtc = e.CreatedUtc,
+                                    ModifiedUtc = e.ModifiedUtc,
                                 }
                         );
 

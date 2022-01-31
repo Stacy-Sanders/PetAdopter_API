@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class DomesticEdit
+    public class ExoticEdit
     {
-        public int DomesticId { get; set; }
+        public int ExoticId { get; set; }
 
         public string Species { get; set; }
 
@@ -30,8 +31,11 @@ namespace PetAdopter_API.Models
 
         public bool IsHypoallergenic { get; set; }
 
-        public bool IsHouseTrained { get; set; }
+        public bool IsLegalInCity { get; set; }
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
+        [ForeignKey(nameof(Adopter))]
+        public int AdopterId { get; set; }
 
-        public bool IsDeclawed { get; set; }
     }
 }

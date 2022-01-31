@@ -8,23 +8,34 @@ using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class DomesticCreate
+    public class ExoticDetail
     {
-        [Required]
+        public int ExoticId { get; set; }
+
         public string Species { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public string Breed { get; set; }
 
-        [Required]
         public string Sex { get; set; }
+        [ForeignKey(nameof(Shelter))]
+        public int ShelterId { get; set; }
 
         public bool IsSterile { get; set; }
 
-        [Required]
         public DateTime BirthDate { get; set; }
+
+        public float Age
+        {
+
+            get
+            {
+                TimeSpan age = DateTime.Now - BirthDate;
+                return (int)Math.Floor(age.TotalDays / 365.24);
+            }
+
+        }
 
         public bool IsAdoptionPending { get; set; }
 
@@ -34,13 +45,12 @@ namespace PetAdopter_API.Models
 
         public bool IsHypoallergenic { get; set; }
 
-        public bool IsHouseTrained { get; set; }
+        public bool IsLegalInCity { get; set; }
 
-        public bool IsDeclawed { get; set; }
+        [Display(Name = "Created")]
+        public DateTimeOffset CreatedUtc { get; set; }
 
-        //[ForeignKey(nameof(Shelter))]
-        //public int ShelterId { get; set; }
-
-        //public virtual Shelter Shelter { get; set; }
+        [Display(Name = "Modified")]
+        public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
