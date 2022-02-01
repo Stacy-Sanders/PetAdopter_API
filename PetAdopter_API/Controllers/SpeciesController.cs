@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PetAdopter_API.Models.Species;
 using PetAdopter_API.Services;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,12 @@ namespace PetAdopter_API.Controllers
 
         }
         [HttpGet]
-        public IHttpActionResult Get(string species)
+        public IHttpActionResult Get([FromBody]SpeciesListItem species)
         {
 
             SpeciesService speciesService = CreateSpeciesService();
             var domestic = speciesService.GetSpecies(species);
-            return Ok(species);
+            return Ok(domestic);
 
         }
     }

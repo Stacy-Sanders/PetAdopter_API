@@ -75,6 +75,7 @@
     <Compile Include="Shelter\ShelterDetail.cs" />
     <Compile Include="Shelter\ShelterEdit.cs" />
     <Compile Include="Shelter\ShelterListItem.cs" />
+    <Compile Include="Species\SpeciesListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetAdopter_API.Data\PetAdopter_API.Data.csproj">
