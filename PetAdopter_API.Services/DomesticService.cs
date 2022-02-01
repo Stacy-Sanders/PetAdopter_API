@@ -36,7 +36,7 @@ namespace PetAdopter_API.Services
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsDeclawed = model.IsDeclawed,
                     CreatedUtc = DateTimeOffset.Now,
-                    AdopterId= model.AdopterId,
+                    AdopterId = model.AdopterId,
                     ShelterId = model.ShelterId,
                 };
             
@@ -65,7 +65,7 @@ namespace PetAdopter_API.Services
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
-                
+
                 return query.ToArray();
             }
         }
@@ -79,8 +79,8 @@ namespace PetAdopter_API.Services
                         .Domestics
                         .Single(e => e.DomesticId == id && e.AdminId == _userId);
                 return
-                    new DomesticDetail 
-                    { 
+                    new DomesticDetail
+                    {
                         DomesticId = entity.DomesticId,
                         Species = entity.Species,
                         Name = entity.Name,
@@ -98,6 +98,26 @@ namespace PetAdopter_API.Services
                         ShelterId = entity.ShelterId,
                     };
 
+            }
+        }
+
+        public IEnumerable<DomesticListItem> GetDomesticBySpecies(string species)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Domestics
+                        .Where(e => e.Species == species && e.AdminId == _userId).Select(e =>
+                                    new DomesticListItem
+                                    {
+                                        DomesticId = e.DomesticId,
+                                        Species = e.Species,
+                                        Name = e.Name,
+
+                                    }
+                                    );
+                return entity.ToArray();
             }
         }
 
@@ -131,10 +151,12 @@ namespace PetAdopter_API.Services
                 entity.IsHypoallergenic = model.IsHypoallergenic;
                 entity.IsHouseTrained = model.IsHouseTrained;
                 entity.IsDeclawed = model.IsDeclawed;
+                entity.AdopterId = model.AdopterId;
+                entity.ShelterId = model.ShelterId;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
-                
+
             }
         }
 
@@ -155,4 +177,6 @@ namespace PetAdopter_API.Services
     }
 }
 
-        
+
+
+

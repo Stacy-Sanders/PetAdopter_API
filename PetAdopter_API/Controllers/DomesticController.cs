@@ -66,6 +66,14 @@ namespace PetAdopter_API.Controllers
 
         }
 
+        // Get by Species
+        [HttpGet]
+        public IHttpActionResult Get(string species)
+        {
+            DomesticService domesticService = CreateDomesticService();
+            var domestics = domesticService.GetDomesticBySpecies(species);
+            return Ok(domestics);
+        }
 
         // PUT (update)
         [HttpPut]
@@ -73,7 +81,6 @@ namespace PetAdopter_API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
 
             var service = CreateDomesticService();
 
@@ -98,3 +105,4 @@ namespace PetAdopter_API.Controllers
 
     }
 }
+
