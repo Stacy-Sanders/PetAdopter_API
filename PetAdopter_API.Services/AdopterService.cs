@@ -55,6 +55,7 @@ namespace PetAdopter_API.Services
                                     LastName = e.LastName,
                                     City = e.City,
                                     State = e.State,
+                                    PhoneNumber = e.PhoneNumber,
                                     CreatedUtc = e.CreatedUtc,
                                 }
                         );
@@ -98,8 +99,9 @@ namespace PetAdopter_API.Services
                         LastName = entity.LastName,
                         City = entity.City,
                         State = entity.State,
-                        CreatedUtc = entity.CreatedUtc
-
+                        PhoneNumber = entity.PhoneNumber,
+                        CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc
                     };
 
             }
@@ -114,11 +116,11 @@ namespace PetAdopter_API.Services
                         .Adopter
                         .Single(e => e.AdopterId == model.AdopterId && e.AdminId == _userId);
 
-                entity.AdopterId = model.AdopterId;
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
                 entity.City = model.City;
                 entity.State = model.State;
+                entity.PhoneNumber = model.PhoneNumber;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
