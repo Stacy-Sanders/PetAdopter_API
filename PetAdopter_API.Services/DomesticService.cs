@@ -107,10 +107,6 @@ namespace PetAdopter_API.Services
             {
                 var query = ctx.Domestics.Where(x => x.IsDeclawed == true);
                 return query.ToList();
-                
-                
-
-
             }
         }
 
