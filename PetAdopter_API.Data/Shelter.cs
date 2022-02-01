@@ -9,11 +9,10 @@ namespace PetAdopter_API.Models
     public class Shelter
     {
         [Key]
-        public int Id { get; set; }
+        public int ShelterId { get; set; }
+
         [Required]
         public Guid AdminId { get; set; }
-
-        public int ShelterId { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -25,6 +24,11 @@ namespace PetAdopter_API.Models
         public string State { get; set; }
 
         public float Rating { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUtc { get; set; }
+
+        public DateTimeOffset? ModifiedUtc { get; set; }
 
         public List<Domestic> Domestics { get; set; } = new List<Domestic>();
         public List<Exotic> Exotics { get; set; } = new List<Exotic> ();

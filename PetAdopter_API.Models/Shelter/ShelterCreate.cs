@@ -11,12 +11,16 @@ namespace PetAdopter_API.Models
     {
         [Key]
         public int ShelterId { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string City { get; set; }
+
         [Required]
         public string State { get; set; }
+
         public float Rating { get; set; }
     }
 }

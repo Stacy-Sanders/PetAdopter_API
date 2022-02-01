@@ -13,12 +13,14 @@ using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
 {
+    [Authorize]
     public class ShelterController : ApiController
     {
-        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+        // private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         //Post
         //Create shelter service to be used for other methods
+        [HttpPost]
         private ShelterService CreateShelterService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -29,9 +31,14 @@ namespace PetAdopter_API.Controllers
         [HttpPost]
         public IHttpActionResult CreateShelter(ShelterCreate shelter)
         {
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
             var service = CreateShelterService();
-            if (!service.CreateShelter(shelter)) { return InternalServerError(); }
+
+            if (!service.CreateShelter(shelter)) 
+                return InternalServerError();
+
             return Ok($"Shelter '{shelter.Name}' has been added to the database.");
         }
 
@@ -40,28 +47,41 @@ namespace PetAdopter_API.Controllers
         public IHttpActionResult Get()
         {
             ShelterService shelterService = CreateShelterService();
-            var shelter = shelterService.GetShelters();
-            return Ok(shelter);
+            var shelters = shelterService.GetShelters();
+            return Ok(shelters);
         }
+
         //Get shelters by Id
+        [HttpGet]
         public IHttpActionResult GetShelterById(int id)
         {
-            ShelterService service = CreateShelterService();
-            var shelter = service.GetShelterById(id);
+            ShelterService shelterService = CreateShelterService();
+            var shelter = shelterService.GetShelterById(id);
             return Ok(shelter);
         }
+
         [HttpPut]
-        public IHttpActionResult Put([FromUri] ShelterEdit updateShelter)
+        public IHttpActionResult Put(ShelterEdit shelter)
         {
-            if (!ModelState.IsValid)return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var service = CreateShelterService();
-            if (!service.UpdateShelter(updateShelter))return InternalServerError();
-            return Ok($"Shelter '{updateShelter.ShelterName}' has been updated.");
+
+            if (!service.UpdateShelter(shelter))
+                return InternalServerError();
+
+            return Ok($"Shelter '{shelter.Name}' has been updated.");
         }
-        public IHttpActionResult Delete (int id)
+
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateShelterService();
-            if (!service.DeleteShelter(id))return InternalServerError();
+
+            if (!service.DeleteShelter(id))
+                return InternalServerError();
+
             return Ok("Shelter Deleted");
         }
     }

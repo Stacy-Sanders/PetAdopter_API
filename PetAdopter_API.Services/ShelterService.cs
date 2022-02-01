@@ -22,11 +22,13 @@ namespace PetAdopter_API.Services
             var entity =
                 new Shelter()
                 {
+                    AdminId = _userId,
                     ShelterId = model.ShelterId,
                     Name = model.Name,
                     City = model.City,
                     State = model.State,
-                    Rating = model.Rating
+                    Rating = model.Rating,
+                    CreatedUtc = DateTimeOffset.Now,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -50,6 +52,7 @@ namespace PetAdopter_API.Services
                                 City = e.City,
                                 State = e.State,
                                 Rating = e.Rating,
+                                CreatedUtc = e.CreatedUtc
                             }
                         );
                 return query.ToArray();
@@ -64,13 +67,15 @@ namespace PetAdopter_API.Services
                     .Shelters
                     .Single(e => e.ShelterId == id);
                 return
+
                     new ShelterDetail
                     {
                         ShelterId = entity.ShelterId,
-                        ShelterName = entity.Name,
+                        Name = entity.Name,
                         City = entity.City,
                         State = entity.State,
-                        Rating = entity.Rating
+                        Rating = entity.Rating,
+                        CreatedUtc = entity.CreatedUtc,
                     };
             }
         }
@@ -82,22 +87,27 @@ namespace PetAdopter_API.Services
                     ctx
                         .Shelters
                         .Single(e => e.ShelterId == model.ShelterId);
+
                 entity.ShelterId = model.ShelterId;
-                entity.Name= model.ShelterName;
+                entity.Name= model.Name;
                 entity.City = model.City;
                 entity.State = model.State;
                 entity.Rating = model.Rating;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
         }
+
         public bool DeleteShelter(int shelterId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
-                    ctx.Shelters
-                        .Single(e => e.ShelterId == shelterId);
+                    ctx
+                        .Shelters
+                        .Single(e => e.ShelterId == shelterId && e.AdminId == _userId);
+
                 ctx.Shelters.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
