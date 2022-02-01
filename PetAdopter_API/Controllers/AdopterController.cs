@@ -61,7 +61,7 @@ namespace PetAdopter_API.Controllers
         //Put (update)
         [HttpPut]
 
-        public IHttpActionResult Put([FromUri] int id, [FromBody] AdopterEdit updatedAdopter)
+        public IHttpActionResult Put(AdopterEdit adopter)
 
         {
             
@@ -69,15 +69,15 @@ namespace PetAdopter_API.Controllers
 
             var service = CreateAdopterService();
 
-            if (!service.UpdateAdopter(updatedAdopter))return InternalServerError();
+            if (!service.UpdateAdopter(adopter))return InternalServerError();
 
-            return Ok($" Adopter {updatedAdopter.FirstName} was updated");
+            return Ok($" Adopter {adopter.FirstName} was updated");
 
         }
 
         //Delete (delete)
         
-        public IHttpActionResult Delete( int id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateAdopterService();
             if (!service.DeleteAdopter(id))return InternalServerError();

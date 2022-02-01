@@ -94,7 +94,6 @@ namespace PetAdopter_API.Services
                         CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
                     };
-
             }
         }
 
@@ -109,6 +108,17 @@ namespace PetAdopter_API.Services
 
                 entity.Species = model.Species;
                 entity.Name = model.Name;
+                entity.Breed = model.Breed;
+                entity.Sex = model.Sex;
+                entity.IsSterile = model.IsSterile;
+                entity.BirthDate = model.BirthDate;
+                entity.IsAdoptionPending = model.IsAdoptionPending;
+                entity.IsKidFriendly = model.IsKidFriendly;
+                entity.IsPetFriendly = model.IsPetFriendly;
+                entity.IsHypoallergenic = model.IsHypoallergenic;
+                entity.IsLegalInCity = model.IsLegalInCity;
+                entity.ShelterId = model.ShelterId;
+                entity.AdopterId = model.AdopterId;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
@@ -132,3 +142,4 @@ namespace PetAdopter_API.Services
         }
     }
 }
+
