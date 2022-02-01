@@ -1,5 +1,7 @@
-﻿using PetAdopter_API.Data;
+﻿using Microsoft.AspNet.Identity;
+using PetAdopter_API.Data;
 using PetAdopter_API.Models;
+using PetAdopter_API.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,18 +16,20 @@ namespace PetAdopter_API.Controllers
     public class DeclawController : ApiController
     {
         private readonly ApplicationDbContext _domestic = new ApplicationDbContext();
-        
-        [HttpGet]
-        public async Task<IHttpActionResult> GetDeclawedCats([FromUri] bool isdeclawed)
+        [HttpPost]
+        private DomesticService CreateDomesticService()
         {
 
-            var domestic = await _domestic.Domestics.Where(x => x.IsDeclawed == isdeclawed).ToListAsync();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var DomesticService = new DomesticService(userId);
+            return DomesticService;
 
-            if (domestic == null)
-
-            {
-                return NotFound();
-            }
+        }
+        [HttpGet]
+        public IHttpActionResult GetByDeclawed()
+        {
+            DomesticService domesticService = CreateDomesticService();
+            var domestic = domesticService.GetDomesticByDeclawed();
             return Ok(domestic);
         }
     }

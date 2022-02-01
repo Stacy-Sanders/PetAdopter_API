@@ -100,22 +100,18 @@ namespace PetAdopter_API.Services
 
             }
         }
-        public IEnumerable<DomesticListItem> GetDomesticByDeclawed(bool isDeclawed)
+
+        public List<Domestic> GetDomesticByDeclawed()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Domestics.Where(e => e.IsDeclawed).Select(e => new DomesticListItem
-                {
-                    DomesticId = e.DomesticId,
-                    Species = e.Species,
-                    Name = e.Name,
-                    CreatedUtc = e.CreatedUtc
+                var query = ctx.Domestics.Where(x => x.IsDeclawed == true);
+                return query.ToList();
+                
+                
 
-                } );
-                return entity.ToArray();
+
             }
-                
-                
         }
 
         public bool UpdateDomestic(DomesticEdit model)

@@ -65,13 +65,7 @@ namespace PetAdopter_API.Controllers
             return Ok(domestic);
 
         }
-        [HttpGet]
-        public IHttpActionResult GetByDeclawed(bool isDeclawed)
-        {
-            DomesticService domesticService= CreateDomesticService();
-            var domestic = domesticService.GetDomesticByDeclawed(isDeclawed);
-            return Ok(domestic);
-        }
+
 
         // PUT (update)
         [HttpPut]
