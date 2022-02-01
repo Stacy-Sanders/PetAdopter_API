@@ -97,6 +97,49 @@ namespace PetAdopter_API.Services
             }
         }
 
+        public IEnumerable<ExoticListItem> GetExoticBySpecies(string species)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Where(e => e.Species == species && e.AdminId == _userId)
+                        .Select(e =>
+                                    new ExoticListItem
+                                    {
+                                        ExoticId = e.ExoticId,
+                                        Species = e.Species,
+                                        Name = e.Name,
+
+                                    }
+                                    );
+                return entity.ToArray();
+            }
+        }
+
+        public IEnumerable<ExoticListItem> GetExoticByLegality(bool isLegalInCity)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Where(e => e.IsLegalInCity == isLegalInCity && e.AdminId == _userId)
+                        .Select(
+                            e =>
+                                new ExoticListItem
+                                {
+                                    ExoticId = e.ExoticId,
+                                    Species = e.Species,
+                                    Name = e.Name,
+                                }
+
+                        );
+                return entity.ToArray();
+            }
+        }
+
         public bool UpdateExotic(ExoticEdit model)
         {
             using (var ctx = new ApplicationDbContext())

@@ -60,7 +60,6 @@
     <Compile Include="AdopterService.cs" />
     <Compile Include="DomesticService.cs" />
     <Compile Include="ExoticService.cs" />
-    <Compile Include="LegalityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShelterService.cs" />
     <Compile Include="SpeciesService.cs" />

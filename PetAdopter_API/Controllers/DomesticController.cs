@@ -87,8 +87,8 @@ namespace PetAdopter_API.Controllers
                 return InternalServerError();
 
             return Ok("Your domestic pet information has been updated.");
-
         }
+
 
         // DELETE
         [HttpDelete]
