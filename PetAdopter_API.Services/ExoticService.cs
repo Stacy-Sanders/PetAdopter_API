@@ -94,7 +94,49 @@ namespace PetAdopter_API.Services
                         CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
                     };
+            }
+        }
 
+        public IEnumerable<ExoticListItem> GetExoticBySpecies(string species)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Where(e => e.Species == species && e.AdminId == _userId)
+                        .Select(e =>
+                                    new ExoticListItem
+                                    {
+                                        ExoticId = e.ExoticId,
+                                        Species = e.Species,
+                                        Name = e.Name,
+
+                                    }
+                                    );
+                return entity.ToArray();
+            }
+        }
+
+        public IEnumerable<ExoticListItem> GetExoticByLegality(bool isLegalInCity)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Where(e => e.IsLegalInCity == isLegalInCity && e.AdminId == _userId)
+                        .Select(
+                            e =>
+                                new ExoticListItem
+                                {
+                                    ExoticId = e.ExoticId,
+                                    Species = e.Species,
+                                    Name = e.Name,
+                                }
+
+                        );
+                return entity.ToArray();
             }
         }
 
@@ -109,6 +151,17 @@ namespace PetAdopter_API.Services
 
                 entity.Species = model.Species;
                 entity.Name = model.Name;
+                entity.Breed = model.Breed;
+                entity.Sex = model.Sex;
+                entity.IsSterile = model.IsSterile;
+                entity.BirthDate = model.BirthDate;
+                entity.IsAdoptionPending = model.IsAdoptionPending;
+                entity.IsKidFriendly = model.IsKidFriendly;
+                entity.IsPetFriendly = model.IsPetFriendly;
+                entity.IsHypoallergenic = model.IsHypoallergenic;
+                entity.IsLegalInCity = model.IsLegalInCity;
+                entity.ShelterId = model.ShelterId;
+                entity.AdopterId = model.AdopterId;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
@@ -132,3 +185,4 @@ namespace PetAdopter_API.Services
         }
     }
 }
+

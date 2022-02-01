@@ -25,9 +25,7 @@ namespace PetAdopter_API.Models
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
-
         public virtual List<Domestic> Domestics { get; set; } = new List<Domestic>();
-
         public virtual List<Exotic> Exotics { get; set; } = new List<Exotic> ();
     }
 }

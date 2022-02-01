@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class AdopterPetList
+    public class AdopterListItem
     {
         public int AdopterId { get; set; }
 
@@ -25,9 +25,7 @@ namespace PetAdopter_API.Models
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
-
-        public virtual List<Domestic> Domestics { get; set; } = new List<Domestic>();
-
-        public virtual List<Exotic> Exotics { get; set; } = new List<Exotic> ();
+        [Display(Name ="Updated")]
+        public DateTimeOffset? ModifiedUtc { get;set; }
     }
 }

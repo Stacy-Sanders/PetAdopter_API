@@ -23,9 +23,10 @@ namespace PetAdopter_API.Models
 
         public string State { get; set; }
 
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
-        [Display(Name ="Updated")]
-        public DateTimeOffset? ModifiedUtc { get;set; }
     }
 }

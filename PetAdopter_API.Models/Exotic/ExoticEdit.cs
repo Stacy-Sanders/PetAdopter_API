@@ -32,8 +32,10 @@ namespace PetAdopter_API.Models
         public bool IsHypoallergenic { get; set; }
 
         public bool IsLegalInCity { get; set; }
+
         [ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
+
         [ForeignKey(nameof(Adopter))]
         public int AdopterId { get; set; }
 

@@ -1,5 +1,7 @@
-﻿using PetAdopter_API.Data;
+﻿using Microsoft.AspNet.Identity;
+using PetAdopter_API.Data;
 using PetAdopter_API.Models;
+using PetAdopter_API.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,25 +13,31 @@ using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
 {
-    public class LegallityController : ApiController
+    [Authorize]
+    public class LegalityController : ApiController
     {
-        private readonly ApplicationDbContext _exotic = new ApplicationDbContext();
 
-        // GET by Legallity
-        // api/Dogs/{isLegal}
-        [HttpGet]
-        public async Task<IHttpActionResult> GetLegalInCity([FromUri] bool isLegalInCity)
+        // Post
+        // Create Legality Service
+        [HttpPost]
+        private LegalityService CreateLegalityService()
         {
-            var exotic = await _exotic.Exotics.Where(x => x.IsLegalInCity == isLegalInCity).ToListAsync();
-
-
-            if (exotic == null)
-
-            {
-                return NotFound();
-            }
-            return Ok(exotic);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var LegalityService = new LegalityService(userId);
+            return LegalityService;
         }
+
+        // GET by Legality
+        // api/Legality
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            LegalityService legalityService = CreateLegalityService();
+            var legal = legalityService.GetLegalInCity();
+            return Ok(legal);
+        }
+            
     }
 }
+        
 

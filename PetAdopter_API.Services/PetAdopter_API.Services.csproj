@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdopterServices.cs" />
+    <Compile Include="AdopterService.cs" />
     <Compile Include="DomesticService.cs" />
     <Compile Include="ExoticService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

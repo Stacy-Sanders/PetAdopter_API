@@ -41,7 +41,7 @@ namespace PetAdopter_API.Controllers
             return Ok($"New Adopter {adopter.AdopterId} created!");
         }
 
-        //Get By ID
+        
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -50,16 +50,18 @@ namespace PetAdopter_API.Controllers
             return Ok(adopters);
 
         }
-        public IHttpActionResult GetById( int id)
+
+        //Get By ID
+        public IHttpActionResult GetById(int id)
         {
             AdopterService service = CreateAdopterService();
             var adopter = service.GetAdopterById(id);
             return Ok(adopter);
         }
+
         //Put (update)
         [HttpPut]
-
-        public IHttpActionResult Put([FromUri] int id, [FromBody] AdopterEdit updatedAdopter)
+        public IHttpActionResult Put(AdopterEdit adopter)
 
         {
             
@@ -67,15 +69,15 @@ namespace PetAdopter_API.Controllers
 
             var service = CreateAdopterService();
 
-            if (!service.UpdateAdopter(updatedAdopter))return InternalServerError();
+            if (!service.UpdateAdopter(adopter))return InternalServerError();
 
-            return Ok($" Adopter {updatedAdopter.FirstName} was updated");
+            return Ok($" Adopter {adopter.FirstName} was updated");
 
         }
 
         //Delete (delete)
         
-        public IHttpActionResult Delete( int id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateAdopterService();
             if (!service.DeleteAdopter(id))return InternalServerError();
@@ -83,4 +85,5 @@ namespace PetAdopter_API.Controllers
         }
     }
 }
+
 
