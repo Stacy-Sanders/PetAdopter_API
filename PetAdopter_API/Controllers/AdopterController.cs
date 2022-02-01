@@ -41,7 +41,7 @@ namespace PetAdopter_API.Controllers
             return Ok($"New Adopter {adopter.AdopterId} created!");
         }
 
-        //Get By ID
+        
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -50,6 +50,8 @@ namespace PetAdopter_API.Controllers
             return Ok(adopters);
 
         }
+
+        //Get By ID
         public IHttpActionResult GetById( int id)
         {
             AdopterService service = CreateAdopterService();

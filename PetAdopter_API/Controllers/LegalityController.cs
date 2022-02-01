@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
 {
-    public class LegallityController : ApiController
+    public class LegalityController : ApiController
     {
         private readonly ApplicationDbContext _exotic = new ApplicationDbContext();
 

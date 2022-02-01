@@ -34,8 +34,10 @@ namespace PetAdopter_API.Models
         public bool IsHouseTrained { get; set; }
 
         public bool IsDeclawed { get; set; }
+
         [ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
+
         [ForeignKey(nameof(Adopter))]
         public int AdopterId { get; set; }
     }

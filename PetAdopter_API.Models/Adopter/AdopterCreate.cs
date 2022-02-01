@@ -27,7 +27,10 @@ namespace PetAdopter_API.Models
 
         [Required]
         public string PhoneNumber { get; set; }
+        [Required]
+        public DateTimeOffset CreatedUtc { get; set; }
 
+        public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
 

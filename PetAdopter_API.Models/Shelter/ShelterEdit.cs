@@ -9,9 +9,13 @@ namespace PetAdopter_API.Models
     public class ShelterEdit
     {
         public int ShelterId { get; set; }
-        public string ShelterName { get; set; }
-        public string State { get; set; }
+
+        public string Name { get; set; }
+
         public string City { get; set; }
+
+        public string State { get; set; }
+
         public float Rating { get; set; }
     }
 }

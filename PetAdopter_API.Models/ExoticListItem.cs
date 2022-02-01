@@ -7,21 +7,13 @@ using System.Threading.Tasks;
 
 namespace PetAdopter_API.Models
 {
-    public class AdopterListItem
+    public class ExoticListItem
     {
-        public int AdopterId { get; set; }
+        public int ExoticId { get; set; }
 
+        public string Species { get; set; }
 
-        public string FirstName { get; set; }
-
-
-        public string LastName { get; set; }
-
-
-        public string City { get; set; }
-
-
-        public string State { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
