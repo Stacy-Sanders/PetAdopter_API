@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PetAdopter_API.Services
 {
     public class SpeciesService
@@ -16,11 +17,11 @@ namespace PetAdopter_API.Services
         {
             _userId = userId;
         }
-        public IEnumerable<SpeciesListItem> GetSpecies(SpeciesListItem species)
+        public IEnumerable<SpeciesListItem> GetDomesticSpecies(SpeciesService species)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Domestics.Where(e => e.Species ==  $"{species}" && e.AdminId == _userId).Select(e=> new SpeciesListItem
+                var entity = ctx.Domestics.Where(e => e.Species.Equals(species) && e.AdminId == _userId ).Select(e=> new SpeciesListItem
                 
                 {
                     Species = e.Species,

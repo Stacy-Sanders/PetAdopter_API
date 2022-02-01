@@ -91,9 +91,9 @@
     <Compile Include="Domestic.cs" />
     <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202202011453596_AfterShelter.cs" />
-    <Compile Include="Migrations\202202011453596_AfterShelter.designer.cs">
-      <DependentUpon>202202011453596_AfterShelter.cs</DependentUpon>
+    <Compile Include="Migrations\202202011531488_6th.cs" />
+    <Compile Include="Migrations\202202011531488_6th.designer.cs">
+      <DependentUpon>202202011531488_6th.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,8 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202011453596_AfterShelter.resx">
-      <DependentUpon>202202011453596_AfterShelter.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202011531488_6th.resx">
+      <DependentUpon>202202011531488_6th.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

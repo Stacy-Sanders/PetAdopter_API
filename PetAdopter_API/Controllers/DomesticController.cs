@@ -32,6 +32,7 @@ namespace PetAdopter_API.Controllers
         [HttpPost]
         public IHttpActionResult Post(DomesticCreate domestic)
         {
+            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -63,6 +64,13 @@ namespace PetAdopter_API.Controllers
             var domestic = domesticService.GetDomesticById(id);
             return Ok(domestic);
 
+        }
+        [HttpGet]
+        public IHttpActionResult GetByDeclawed(bool isDeclawed)
+        {
+            DomesticService domesticService= CreateDomesticService();
+            var domestic = domesticService.GetDomesticByDeclawed(isDeclawed);
+            return Ok(domestic);
         }
 
         // PUT (update)

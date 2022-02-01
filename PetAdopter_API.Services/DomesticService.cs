@@ -39,6 +39,7 @@ namespace PetAdopter_API.Services
                     AdopterId= model.AdopterId,
                     ShelterId = model.ShelterId,
                 };
+            
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Domestics.Add(entity);
@@ -98,6 +99,23 @@ namespace PetAdopter_API.Services
                     };
 
             }
+        }
+        public IEnumerable<DomesticListItem> GetDomesticByDeclawed(bool isDeclawed)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Domestics.Where(e => e.IsDeclawed).Select(e => new DomesticListItem
+                {
+                    DomesticId = e.DomesticId,
+                    Species = e.Species,
+                    Name = e.Name,
+                    CreatedUtc = e.CreatedUtc
+
+                } );
+                return entity.ToArray();
+            }
+                
+                
         }
 
         public bool UpdateDomestic(DomesticEdit model)

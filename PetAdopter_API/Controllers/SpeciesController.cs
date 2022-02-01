@@ -21,12 +21,12 @@ namespace PetAdopter_API.Controllers
 
         }
         [HttpGet]
-        public IHttpActionResult Get([FromBody]SpeciesListItem species)
+        public IHttpActionResult Get([FromBody]SpeciesService species)
         {
 
             SpeciesService speciesService = CreateSpeciesService();
-            var domestic = speciesService.GetSpecies(species);
-            return Ok(domestic);
+            var domesticSpecies = speciesService.GetDomesticSpecies(species);
+            return Ok(domesticSpecies);
 
         }
     }
