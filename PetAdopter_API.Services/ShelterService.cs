@@ -23,13 +23,13 @@ namespace PetAdopter_API.Services
                 new Shelter()
                 {
                     AdminId = _userId,
-                    ShelterId = model.ShelterId,
                     Name = model.Name,
                     City = model.City,
                     State = model.State,
                     Rating = model.Rating,
                     CreatedUtc = DateTimeOffset.Now,
                 };
+
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Shelters.Add(entity);

@@ -16,7 +16,6 @@ namespace PetAdopter_API.Controllers
     [Authorize]
     public class ShelterController : ApiController
     {
-        // private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         //Post
         //Create shelter service to be used for other methods

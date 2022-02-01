@@ -12,9 +12,9 @@ namespace PetAdopter_API.Models
 
         public string Name { get; set; }
 
-        public string State { get; set; }
-
         public string City { get; set; }
+
+        public string State { get; set; }
 
         public float Rating { get; set; }
     }

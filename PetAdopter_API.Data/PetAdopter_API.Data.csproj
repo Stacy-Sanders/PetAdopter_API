@@ -91,17 +91,9 @@
     <Compile Include="Domestic.cs" />
     <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202201311942523_FKUpdate.cs" />
-    <Compile Include="Migrations\202201311942523_FKUpdate.designer.cs">
-      <DependentUpon>202201311942523_FKUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201312117346_shelter.cs" />
-    <Compile Include="Migrations\202201312117346_shelter.designer.cs">
-      <DependentUpon>202201312117346_shelter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201312206057_ShelterUpdate.cs" />
-    <Compile Include="Migrations\202201312206057_ShelterUpdate.designer.cs">
-      <DependentUpon>202201312206057_ShelterUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\202202011453596_AfterShelter.cs" />
+    <Compile Include="Migrations\202202011453596_AfterShelter.designer.cs">
+      <DependentUpon>202202011453596_AfterShelter.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,14 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201311942523_FKUpdate.resx">
-      <DependentUpon>202201311942523_FKUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201312117346_shelter.resx">
-      <DependentUpon>202201312117346_shelter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201312206057_ShelterUpdate.resx">
-      <DependentUpon>202201312206057_ShelterUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202011453596_AfterShelter.resx">
+      <DependentUpon>202202011453596_AfterShelter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
