@@ -74,6 +74,15 @@ namespace PetAdopter_API.Controllers
             return Ok(domestics);
         }
 
+        // Get by Hypoallergenic
+        [HttpGet]
+        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
+        {
+            DomesticService domesticService = CreateDomesticService();
+            var domestics = domesticService.GetDomesticByHypoallergenic(isHypoallergenic);
+            return Ok(domestics);
+        }
+
         // PUT (update)
         [HttpPut]
         public IHttpActionResult Put(DomesticEdit domestic)
