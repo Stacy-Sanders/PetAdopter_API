@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using PetAdopter_API.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace PetAdopter_API.Controllers

@@ -39,6 +39,7 @@ namespace PetAdopter_API.Services
                     AdopterId = model.AdopterId,
                     ShelterId = model.ShelterId,
                 };
+            
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Domestics.Add(entity);
@@ -96,6 +97,15 @@ namespace PetAdopter_API.Services
                         CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
                     };
+            }
+        }
+
+        public List<Domestic> GetDomesticByDeclawed()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Domestics.Where(x => x.IsDeclawed == true);
+                return query.ToList();
             }
         }
 

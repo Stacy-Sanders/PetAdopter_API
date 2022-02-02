@@ -32,6 +32,7 @@ namespace PetAdopter_API.Controllers
         [HttpPost]
         public IHttpActionResult Post(DomesticCreate domestic)
         {
+            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
