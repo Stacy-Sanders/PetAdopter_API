@@ -111,6 +111,17 @@ namespace PetAdopter_API.Services
                                         ExoticId = e.ExoticId,
                                         Species = e.Species,
                                         Name = e.Name,
+                                        Breed = e.Breed,
+                                        Sex = e.Sex,
+                                        IsSterile = e.IsSterile,
+                                        BirthDate = e.BirthDate,
+                                        IsAdoptionPending = e.IsAdoptionPending,
+                                        IsKidFriendly = e.IsKidFriendly,
+                                        IsPetFriendly = e.IsPetFriendly,
+                                        IsHypoallergenic = e.IsHypoallergenic,
+                                        IsLegalInCity = e.IsLegalInCity,
+                                        CreatedUtc = e.CreatedUtc,
+                                        ShelterId = e.ShelterId,
 
                                     }
                                     );
@@ -133,6 +144,17 @@ namespace PetAdopter_API.Services
                                     ExoticId = e.ExoticId,
                                     Species = e.Species,
                                     Name = e.Name,
+                                    Breed = e.Breed,
+                                    Sex = e.Sex,
+                                    IsSterile = e.IsSterile,
+                                    BirthDate = e.BirthDate,
+                                    IsAdoptionPending = e.IsAdoptionPending,
+                                    IsKidFriendly = e.IsKidFriendly,
+                                    IsPetFriendly = e.IsPetFriendly,
+                                    IsHypoallergenic = e.IsHypoallergenic,
+                                    IsLegalInCity = e.IsLegalInCity,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ShelterId = e.ShelterId,
                                 }
 
                         );
@@ -155,8 +177,83 @@ namespace PetAdopter_API.Services
                                     ExoticId = e.ExoticId,
                                     Species = e.Species,
                                     Name = e.Name,
+                                    Breed = e.Breed,
+                                    Sex = e.Sex,
+                                    IsSterile = e.IsSterile,
+                                    BirthDate = e.BirthDate,
+                                    IsAdoptionPending = e.IsAdoptionPending,
+                                    IsKidFriendly = e.IsKidFriendly,
+                                    IsPetFriendly = e.IsPetFriendly,
+                                    IsHypoallergenic = e.IsHypoallergenic,
+                                    IsLegalInCity = e.IsLegalInCity,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ShelterId = e.ShelterId,
                                 }
+                        );
+                return entity.ToArray();
+            }
+        }
 
+        public IEnumerable<ExoticListItem> GetExoticByAdopterID(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Where(e => e.AdopterId == id && e.AdminId == _userId)
+                        .Select(
+                            e =>
+                                new ExoticListItem
+                                {
+                                    ExoticId = e.ExoticId,
+                                    Species = e.Species,
+                                    Name = e.Name,
+                                    Breed = e.Breed,
+                                    Sex = e.Sex,
+                                    IsSterile = e.IsSterile,
+                                    BirthDate = e.BirthDate,
+                                    IsAdoptionPending = e.IsAdoptionPending,
+                                    IsKidFriendly = e.IsKidFriendly,
+                                    IsPetFriendly = e.IsPetFriendly,
+                                    IsHypoallergenic = e.IsHypoallergenic,
+                                    IsLegalInCity = e.IsLegalInCity,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
+                                }
+                        );
+                return entity.ToArray();
+            }
+        }
+
+        public IEnumerable<ExoticListItem> GetExoticByShelterID(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Where(e => e.ShelterId == id && e.AdminId == _userId)
+                        .Select(
+                            e =>
+                                new ExoticListItem
+                                {
+                                    ExoticId = e.ExoticId,
+                                    Species = e.Species,
+                                    Name = e.Name,
+                                    Breed = e.Breed,
+                                    Sex = e.Sex,
+                                    IsSterile = e.IsSterile,
+                                    BirthDate = e.BirthDate,
+                                    IsAdoptionPending = e.IsAdoptionPending,
+                                    IsKidFriendly = e.IsKidFriendly,
+                                    IsPetFriendly = e.IsPetFriendly,
+                                    IsHypoallergenic = e.IsHypoallergenic,
+                                    IsLegalInCity = e.IsLegalInCity,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ShelterId = e.ShelterId,
+                                }
                         );
                 return entity.ToArray();
             }
@@ -207,4 +304,5 @@ namespace PetAdopter_API.Services
         }
     }
 }
+
 

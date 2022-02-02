@@ -87,6 +87,28 @@ namespace PetAdopter_API.Controllers
             return Ok(exotics);
         }
 
+        //// GET by AdopterId
+        //[HttpGet]
+        //public IHttpActionResult GetAdopterId(int id)
+        //{
+
+        //    ExoticService exoticService = CreateExoticService();
+        //    var exotic = exoticService.GetExoticByAdopterID(id);
+        //    return Ok(exotic);
+
+        //}
+
+        //// GET by ShelterId
+        //[HttpGet]
+        //public IHttpActionResult GetShelterId(int id)
+        //{
+
+        //    ExoticService exoticService = CreateExoticService();
+        //    var exotic = exoticService.GetExoticByShelterID(id);
+        //    return Ok(exotic);
+
+        //}
+
         // PUT (update)
         public IHttpActionResult Put(ExoticEdit exotic)
         {
