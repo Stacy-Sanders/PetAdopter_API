@@ -19,6 +19,7 @@ namespace PetAdopter_API.Controllers
             var userId = Guid.Parse(User.Identity.GetUserId());
             var PetService = new PetService(userId);
             return PetService;
+
         }
 
         // GET by AdopterId
@@ -42,6 +43,34 @@ namespace PetAdopter_API.Controllers
             return Ok(domesticPet);
 
         }
+
+        // Get by Species
+        [HttpGet]
+        public IHttpActionResult GetDomesticBySpecies(string species)
+        {
+            PetService petService = CreatePetService();
+            var domesticPets = petService.GetDomesticBySpecies(species);
+            return Ok(domesticPets);
+        }
+
+        // Get by Hypoallergenic
+        [HttpGet]
+        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
+        {
+            PetService petService = CreatePetService();
+            var domesticPets = petService.GetDomesticByHypoallergenic(isHypoallergenic);
+            return Ok(domesticPets);
+        }
+
+        // Get by Declawed
+        [HttpGet]
+        public IHttpActionResult GetDeclawed(bool isDeclawed)
+        {
+            PetService petService = CreatePetService();
+            var domesticPets = petService.GetByDeclawed(isDeclawed);
+            return Ok(domesticPets);
+        }
+
 
         // GET by AdopterId
         [HttpGet]

@@ -36,9 +36,7 @@ namespace PetAdopter_API.Services
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsDeclawed = model.IsDeclawed,
                     CreatedUtc = DateTimeOffset.Now,
-
                     AdopterId = model.AdopterId,
-
                     ShelterId = model.ShelterId,
                 };
             using (var ctx = new ApplicationDbContext())
@@ -98,160 +96,6 @@ namespace PetAdopter_API.Services
                         CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
                     };
-
-            }
-        }
-
-        public IEnumerable<DomesticListItem> GetDomesticBySpecies(string species)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Domestics
-                        .Where(e => e.Species == species && e.AdminId == _userId).Select(e =>
-                                    new DomesticListItem
-                                    {
-                                        DomesticId = e.DomesticId,
-                                        Species = e.Species,
-                                        Name = e.Name,
-
-                                    }
-                                    );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<DomesticListItem> GetDomesticByHypoallergenic(bool isHypoallergenic)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Domestics
-                        .Where(e => e.IsHypoallergenic == isHypoallergenic && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new DomesticListItem
-                                {
-                                    DomesticId = e.DomesticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsHouseTrained = e.IsHouseTrained,
-                                    IsDeclawed = e.IsDeclawed,
-                                    CreatedUtc = e.CreatedUtc,
-                                }
-
-                        );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<DomesticListItem> GetByDeclawed(bool isDeclawed)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Domestics
-                        .Where(e => e.IsDeclawed == isDeclawed && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new DomesticListItem
-                                {
-                                    DomesticId = e.DomesticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsHouseTrained = e.IsHouseTrained,
-                                    IsDeclawed = e.IsDeclawed,
-                                    CreatedUtc = e.CreatedUtc,
-                                }
-
-                        );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<DomesticListItem> GetDomesticByAdopterID(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Domestics
-                        .Where(e => e.AdopterId == id && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new DomesticListItem
-                                {
-                                    DomesticId = e.DomesticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsHouseTrained = e.IsHouseTrained,
-                                    IsDeclawed = e.IsDeclawed,
-                                    CreatedUtc = e.CreatedUtc,
-                                    ShelterId = e.ShelterId,
-                                    AdopterId = e.AdopterId,
-                                }
-                        );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<DomesticListItem> GetDomesticByShelterID(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Domestics
-                        .Where(e => e.ShelterId == id && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new DomesticListItem
-                                {
-                                    DomesticId = e.DomesticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsHouseTrained = e.IsHouseTrained,
-                                    IsDeclawed = e.IsDeclawed,
-                                    CreatedUtc = e.CreatedUtc,
-                                    ShelterId = e.ShelterId,
-                                }
-                        );
-                return entity.ToArray();
             }
         }
 
@@ -301,6 +145,8 @@ namespace PetAdopter_API.Services
         }
     }
 }
+
+
 
 
 
