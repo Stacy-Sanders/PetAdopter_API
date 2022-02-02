@@ -58,8 +58,56 @@ namespace PetAdopter_API.Controllers
             ExoticService exoticService = CreateExoticService();
             var exotic = exoticService.GetExoticById(id);
             return Ok(exotic);
-
         }
+
+        // Get by Species
+        [HttpGet]
+        public IHttpActionResult Get(string species)
+        {
+            ExoticService exoticService = CreateExoticService();
+            var exotics = exoticService.GetExoticBySpecies(species);
+            return Ok(exotics);
+        }
+
+        // Get by Legality
+        [HttpGet]
+        public IHttpActionResult Get(bool isLegalInCity)
+        {
+            ExoticService exoticService = CreateExoticService();
+            var exotics = exoticService.GetExoticByLegality(isLegalInCity);
+            return Ok(exotics);
+        }
+
+        // Get by Hypoallergenic
+        [HttpGet]
+        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
+        {
+            ExoticService exoticService = CreateExoticService();
+            var exotics = exoticService.GetExoticByHypoallergenic(isHypoallergenic);
+            return Ok(exotics);
+        }
+
+        //// GET by AdopterId
+        //[HttpGet]
+        //public IHttpActionResult GetAdopterId(int id)
+        //{
+
+        //    ExoticService exoticService = CreateExoticService();
+        //    var exotic = exoticService.GetExoticByAdopterID(id);
+        //    return Ok(exotic);
+
+        //}
+
+        //// GET by ShelterId
+        //[HttpGet]
+        //public IHttpActionResult GetShelterId(int id)
+        //{
+
+        //    ExoticService exoticService = CreateExoticService();
+        //    var exotic = exoticService.GetExoticByShelterID(id);
+        //    return Ok(exotic);
+
+        //}
 
         // PUT (update)
         public IHttpActionResult Put(ExoticEdit exotic)

@@ -213,6 +213,7 @@
     <Compile Include="Controllers\DomesticController.cs" />
     <Compile Include="Controllers\ExoticController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PetController.cs" />
     <Compile Include="Controllers\ShelterController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

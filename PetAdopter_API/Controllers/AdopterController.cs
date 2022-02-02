@@ -52,15 +52,15 @@ namespace PetAdopter_API.Controllers
         }
 
         //Get By ID
-        public IHttpActionResult GetById( int id)
+        public IHttpActionResult GetById(int id)
         {
             AdopterService service = CreateAdopterService();
             var adopter = service.GetAdopterById(id);
             return Ok(adopter);
         }
+
         //Put (update)
         [HttpPut]
-
         public IHttpActionResult Put(AdopterEdit adopter)
 
         {
@@ -85,4 +85,5 @@ namespace PetAdopter_API.Controllers
         }
     }
 }
+
 
