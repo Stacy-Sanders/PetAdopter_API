@@ -15,13 +15,10 @@ namespace PetAdopter_API.Models
         
         public string FirstName { get; set; }
 
-        
         public string LastName { get; set; }
 
-        
         public string City { get; set; }
 
-        
         public string State { get; set; }
 
         [Display(Name = "Phone Number")]
@@ -34,3 +31,6 @@ namespace PetAdopter_API.Models
         public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
+        
+        
+        
