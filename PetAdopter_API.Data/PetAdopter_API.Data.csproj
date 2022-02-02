@@ -91,21 +91,9 @@
     <Compile Include="Domestic.cs" />
     <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202202011824562_EleventyThird.cs" />
-    <Compile Include="Migrations\202202011824562_EleventyThird.designer.cs">
-      <DependentUpon>202202011824562_EleventyThird.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202011910139_UpdateDomestic.cs" />
-    <Compile Include="Migrations\202202011910139_UpdateDomestic.designer.cs">
-      <DependentUpon>202202011910139_UpdateDomestic.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202021453208_GetById.cs" />
-    <Compile Include="Migrations\202202021453208_GetById.designer.cs">
-      <DependentUpon>202202021453208_GetById.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202021508179_PetController.cs" />
-    <Compile Include="Migrations\202202021508179_PetController.designer.cs">
-      <DependentUpon>202202021508179_PetController.cs</DependentUpon>
+    <Compile Include="Migrations\202202021529087_6th.cs" />
+    <Compile Include="Migrations\202202021529087_6th.designer.cs">
+      <DependentUpon>202202021529087_6th.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,17 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202011824562_EleventyThird.resx">
-      <DependentUpon>202202011824562_EleventyThird.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202011910139_UpdateDomestic.resx">
-      <DependentUpon>202202011910139_UpdateDomestic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202021453208_GetById.resx">
-      <DependentUpon>202202021453208_GetById.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202021508179_PetController.resx">
-      <DependentUpon>202202021508179_PetController.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202021529087_6th.resx">
+      <DependentUpon>202202021529087_6th.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
