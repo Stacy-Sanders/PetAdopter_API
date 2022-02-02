@@ -140,6 +140,28 @@ namespace PetAdopter_API.Services
             }
         }
 
+        public IEnumerable<ExoticListItem> GetExoticByHypoallergenic(bool isHypoallergenic)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Where(e => e.IsHypoallergenic == isHypoallergenic && e.AdminId == _userId)
+                        .Select(
+                            e =>
+                                new ExoticListItem
+                                {
+                                    ExoticId = e.ExoticId,
+                                    Species = e.Species,
+                                    Name = e.Name,
+                                }
+
+                        );
+                return entity.ToArray();
+            }
+        }
+
         public bool UpdateExotic(ExoticEdit model)
         {
             using (var ctx = new ApplicationDbContext())

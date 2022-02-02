@@ -78,6 +78,15 @@ namespace PetAdopter_API.Controllers
             return Ok(exotics);
         }
 
+        // Get by Hypoallergenic
+        [HttpGet]
+        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
+        {
+            ExoticService exoticService = CreateExoticService();
+            var exotics = exoticService.GetExoticByHypoallergenic(isHypoallergenic);
+            return Ok(exotics);
+        }
+
         // PUT (update)
         public IHttpActionResult Put(ExoticEdit exotic)
         {
