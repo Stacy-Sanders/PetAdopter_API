@@ -66,46 +66,6 @@ namespace PetAdopter_API.Controllers
 
         }
 
-        // Get by Species
-        [HttpGet]
-        public IHttpActionResult Get(string species)
-        {
-            DomesticService domesticService = CreateDomesticService();
-            var domestics = domesticService.GetDomesticBySpecies(species);
-            return Ok(domestics);
-        }
-
-        // Get by Hypoallergenic
-        [HttpGet]
-        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
-        {
-            DomesticService domesticService = CreateDomesticService();
-            var domestics = domesticService.GetDomesticByHypoallergenic(isHypoallergenic);
-            return Ok(domestics);
-        }
-
-        //// GET by AdopterId
-        //[HttpGet]
-        //public IHttpActionResult GetAdopterId(int id)
-        //{
-
-        //    DomesticService domesticService = CreateDomesticService();
-        //    var domestic = domesticService.GetDomesticByAdopterID(id);
-        //    return Ok(domestic);
-
-        //}
-
-        //// GET by ShelterId
-        //[HttpGet]
-        //public IHttpActionResult GetShelterId(int id)
-        //{
-
-        //    DomesticService domesticService = CreateDomesticService();
-        //    var domestic = domesticService.GetDomesticByShelterID(id);
-        //    return Ok(domestic);
-
-        //}
-
         // PUT (update)
         [HttpPut]
         public IHttpActionResult Put(DomesticEdit domestic)
@@ -136,4 +96,5 @@ namespace PetAdopter_API.Controllers
 
     }
 }
+       
 

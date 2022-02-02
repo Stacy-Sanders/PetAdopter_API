@@ -91,9 +91,9 @@
     <Compile Include="Domestic.cs" />
     <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202202021529087_6th.cs" />
-    <Compile Include="Migrations\202202021529087_6th.designer.cs">
-      <DependentUpon>202202021529087_6th.cs</DependentUpon>
+    <Compile Include="Migrations\202202011824562_EleventyThird.cs" />
+    <Compile Include="Migrations\202202011824562_EleventyThird.designer.cs">
+      <DependentUpon>202202011824562_EleventyThird.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,8 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202021529087_6th.resx">
-      <DependentUpon>202202021529087_6th.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202011824562_EleventyThird.resx">
+      <DependentUpon>202202011824562_EleventyThird.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
