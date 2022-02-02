@@ -36,11 +36,10 @@ namespace PetAdopter_API.Services
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsDeclawed = model.IsDeclawed,
                     CreatedUtc = DateTimeOffset.Now,
-
                     AdopterId = model.AdopterId,
-
                     ShelterId = model.ShelterId,
                 };
+            
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Domestics.Add(entity);
@@ -98,49 +97,15 @@ namespace PetAdopter_API.Services
                         CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
                     };
-
             }
         }
 
-        public IEnumerable<DomesticListItem> GetDomesticBySpecies(string species)
+        public List<Domestic> GetDomesticByDeclawed()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Domestics
-                        .Where(e => e.Species == species && e.AdminId == _userId).Select(e =>
-                                    new DomesticListItem
-                                    {
-                                        DomesticId = e.DomesticId,
-                                        Species = e.Species,
-                                        Name = e.Name,
-
-                                    }
-                                    );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<DomesticListItem> GetDomesticByHypoallergenic(bool isHypoallergenic)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Domestics
-                        .Where(e => e.IsHypoallergenic == isHypoallergenic && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new DomesticListItem
-                                {
-                                    DomesticId = e.DomesticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                }
-
-                        );
-                return entity.ToArray();
+                var query = ctx.Domestics.Where(x => x.IsDeclawed == true);
+                return query.ToList();
             }
         }
 
@@ -190,6 +155,8 @@ namespace PetAdopter_API.Services
         }
     }
 }
+
+
 
 
 

@@ -32,6 +32,7 @@ namespace PetAdopter_API.Controllers
         [HttpPost]
         public IHttpActionResult Post(DomesticCreate domestic)
         {
+            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -65,24 +66,6 @@ namespace PetAdopter_API.Controllers
 
         }
 
-        // Get by Species
-        [HttpGet]
-        public IHttpActionResult Get(string species)
-        {
-            DomesticService domesticService = CreateDomesticService();
-            var domestics = domesticService.GetDomesticBySpecies(species);
-            return Ok(domestics);
-        }
-
-        // Get by Hypoallergenic
-        [HttpGet]
-        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
-        {
-            DomesticService domesticService = CreateDomesticService();
-            var domestics = domesticService.GetDomesticByHypoallergenic(isHypoallergenic);
-            return Ok(domestics);
-        }
-
         // PUT (update)
         [HttpPut]
         public IHttpActionResult Put(DomesticEdit domestic)
@@ -113,4 +96,5 @@ namespace PetAdopter_API.Controllers
 
     }
 }
+       
 
