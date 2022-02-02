@@ -122,6 +122,28 @@ namespace PetAdopter_API.Services
             }
         }
 
+        public IEnumerable<DomesticListItem> GetDomesticByHypoallergenic(bool isHypoallergenic)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Domestics
+                        .Where(e => e.IsHypoallergenic == isHypoallergenic && e.AdminId == _userId)
+                        .Select(
+                            e =>
+                                new DomesticListItem
+                                {
+                                    DomesticId = e.DomesticId,
+                                    Species = e.Species,
+                                    Name = e.Name,
+                                }
+
+                        );
+                return entity.ToArray();
+            }
+        }
+
         public bool UpdateDomestic(DomesticEdit model)
         {
             using (var ctx = new ApplicationDbContext())
