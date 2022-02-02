@@ -91,14 +91,6 @@
     <Compile Include="Domestic.cs" />
     <Compile Include="Exotic.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202202011824562_EleventyThird.cs" />
-    <Compile Include="Migrations\202202011824562_EleventyThird.designer.cs">
-      <DependentUpon>202202011824562_EleventyThird.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202011910139_UpdateDomestic.cs" />
-    <Compile Include="Migrations\202202011910139_UpdateDomestic.designer.cs">
-      <DependentUpon>202202011910139_UpdateDomestic.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shelter.cs" />
@@ -106,14 +98,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202011824562_EleventyThird.resx">
-      <DependentUpon>202202011824562_EleventyThird.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202011910139_UpdateDomestic.resx">
-      <DependentUpon>202202011910139_UpdateDomestic.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

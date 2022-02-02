@@ -70,14 +70,11 @@
     <Compile Include="Exotic\ExoticDetail.cs" />
     <Compile Include="Exotic\ExoticEdit.cs" />
     <Compile Include="Exotic\ExoticListItem.cs" />
-    <Compile Include="Legality\LegalDetail.cs" />
-    <Compile Include="Legality\LegalListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shelter\ShelterCreate.cs" />
     <Compile Include="Shelter\ShelterDetail.cs" />
     <Compile Include="Shelter\ShelterEdit.cs" />
     <Compile Include="Shelter\ShelterListItem.cs" />
-    <Compile Include="Species\SpeciesListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetAdopter_API.Data\PetAdopter_API.Data.csproj">
