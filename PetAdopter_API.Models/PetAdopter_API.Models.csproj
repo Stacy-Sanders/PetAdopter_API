@@ -61,7 +61,6 @@
     <Compile Include="Adopter\AdopterDetail.cs" />
     <Compile Include="Adopter\AdopterEdit.cs" />
     <Compile Include="Adopter\AdopterListItem.cs" />
-    <Compile Include="Adopter\AdopterPetList.cs" />
     <Compile Include="Domestic\DomesticCreate.cs" />
     <Compile Include="Domestic\DomesticDetail.cs" />
     <Compile Include="Domestic\DomesticEdit.cs" />

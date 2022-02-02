@@ -42,8 +42,8 @@ namespace PetAdopter_API.Models
                 TimeSpan age = DateTime.Now - BirthDate;
                 return (int)Math.Floor(age.TotalDays / 365.24);
             }
-
         }
+
         [Required]
         public bool IsAdoptionPending { get; set; }
 
@@ -73,6 +73,7 @@ namespace PetAdopter_API.Models
         public virtual Shelter Shelter { get; set; }
     }
 }
+
 
 
 

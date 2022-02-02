@@ -23,6 +23,9 @@ namespace PetAdopter_API.Models
         [ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
 
+        [ForeignKey(nameof(Adopter))]
+        public int AdopterId { get; set; }
+
         public bool IsSterile { get; set; }
 
         public DateTime BirthDate { get; set; }

@@ -28,7 +28,7 @@ namespace PetAdopter_API.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult CreateShelter(ShelterCreate shelter)
+        public IHttpActionResult Post(ShelterCreate shelter)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -52,7 +52,7 @@ namespace PetAdopter_API.Controllers
 
         //Get shelters by Id
         [HttpGet]
-        public IHttpActionResult GetShelterById(int id)
+        public IHttpActionResult GetById(int id)
         {
             ShelterService shelterService = CreateShelterService();
             var shelter = shelterService.GetShelterById(id);

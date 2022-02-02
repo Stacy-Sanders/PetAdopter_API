@@ -28,6 +28,7 @@ namespace PetAdopter_API.Controllers
         }
 
         // POST
+        [HttpPost]
         public IHttpActionResult Post(ExoticCreate exotic)
         {
             if (!ModelState.IsValid)
@@ -60,33 +61,7 @@ namespace PetAdopter_API.Controllers
             return Ok(exotic);
         }
 
-        // Get by Species
-        [HttpGet]
-        public IHttpActionResult Get(string species)
-        {
-            ExoticService exoticService = CreateExoticService();
-            var exotics = exoticService.GetExoticBySpecies(species);
-            return Ok(exotics);
-        }
-
-        // Get by Legality
-        [HttpGet]
-        public IHttpActionResult Get(bool isLegalInCity)
-        {
-            ExoticService exoticService = CreateExoticService();
-            var exotics = exoticService.GetExoticByLegality(isLegalInCity);
-            return Ok(exotics);
-        }
-
-        // Get by Hypoallergenic
-        [HttpGet]
-        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
-        {
-            ExoticService exoticService = CreateExoticService();
-            var exotics = exoticService.GetExoticByHypoallergenic(isHypoallergenic);
-            return Ok(exotics);
-        }
-
+       
         // PUT (update)
         public IHttpActionResult Put(ExoticEdit exotic)
         {

@@ -40,7 +40,6 @@ namespace PetAdopter_API.Models
                 TimeSpan age = DateTime.Now - BirthDate;
                 return (int)Math.Floor(age.TotalDays / 365.24);
             }
-
         }
 
         [Required]
@@ -71,4 +70,5 @@ namespace PetAdopter_API.Models
 
     }
 }
+
 

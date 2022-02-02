@@ -38,6 +38,7 @@ namespace PetAdopter_API.Services
                     AdopterId = model.AdopterId,
                     ShelterId = model.ShelterId,
                 };
+
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Exotics.Add(entity);
@@ -60,7 +61,19 @@ namespace PetAdopter_API.Services
                                     ExoticId = e.ExoticId,
                                     Species = e.Species,
                                     Name = e.Name,
-                                    CreatedUtc = e.CreatedUtc
+                                    Breed = e.Breed,
+                                    Sex = e.Sex,
+                                    IsSterile = e.IsSterile,
+                                    BirthDate = e.BirthDate,
+                                    IsAdoptionPending = e.IsAdoptionPending,
+                                    IsKidFriendly = e.IsKidFriendly,
+                                    IsPetFriendly = e.IsPetFriendly,
+                                    IsHypoallergenic = e.IsHypoallergenic,
+                                    IsLegalInCity = e.IsLegalInCity,
+                                    ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ModifiedUtc = e.ModifiedUtc,
                                 }
                         );
 
@@ -91,174 +104,13 @@ namespace PetAdopter_API.Services
                         IsPetFriendly = entity.IsPetFriendly,
                         IsHypoallergenic = entity.IsHypoallergenic,
                         IsLegalInCity = entity.IsLegalInCity,
-                        CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
+                        AdopterId = entity.AdopterId,
+                        CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc,
                     };
             }
         }
-
-        public IEnumerable<ExoticListItem> GetExoticBySpecies(string species)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Exotics
-                        .Where(e => e.Species == species && e.AdminId == _userId)
-                        .Select(e =>
-                                    new ExoticListItem
-                                    {
-                                        ExoticId = e.ExoticId,
-                                        Species = e.Species,
-                                        Name = e.Name,
-                                        Breed = e.Breed,
-                                        Sex = e.Sex,
-                                        IsSterile = e.IsSterile,
-                                        BirthDate = e.BirthDate,
-                                        IsAdoptionPending = e.IsAdoptionPending,
-                                        IsKidFriendly = e.IsKidFriendly,
-                                        IsPetFriendly = e.IsPetFriendly,
-                                        IsHypoallergenic = e.IsHypoallergenic,
-                                        IsLegalInCity = e.IsLegalInCity,
-                                        CreatedUtc = e.CreatedUtc,
-                                        ShelterId = e.ShelterId,
-
-                                    }
-                                    );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<ExoticListItem> GetExoticByLegality(bool isLegalInCity)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Exotics
-                        .Where(e => e.IsLegalInCity == isLegalInCity && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new ExoticListItem
-                                {
-                                    ExoticId = e.ExoticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
-                                    ShelterId = e.ShelterId,
-                                }
-
-                        );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<ExoticListItem> GetExoticByHypoallergenic(bool isHypoallergenic)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Exotics
-                        .Where(e => e.IsHypoallergenic == isHypoallergenic && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new ExoticListItem
-                                {
-                                    ExoticId = e.ExoticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
-                                    ShelterId = e.ShelterId,
-                                }
-                        );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<ExoticListItem> GetExoticByAdopterID(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Exotics
-                        .Where(e => e.AdopterId == id && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new ExoticListItem
-                                {
-                                    ExoticId = e.ExoticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
-                                    ShelterId = e.ShelterId,
-                                    AdopterId = e.AdopterId,
-                                }
-                        );
-                return entity.ToArray();
-            }
-        }
-
-        public IEnumerable<ExoticListItem> GetExoticByShelterID(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Exotics
-                        .Where(e => e.ShelterId == id && e.AdminId == _userId)
-                        .Select(
-                            e =>
-                                new ExoticListItem
-                                {
-                                    ExoticId = e.ExoticId,
-                                    Species = e.Species,
-                                    Name = e.Name,
-                                    Breed = e.Breed,
-                                    Sex = e.Sex,
-                                    IsSterile = e.IsSterile,
-                                    BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
-                                    IsKidFriendly = e.IsKidFriendly,
-                                    IsPetFriendly = e.IsPetFriendly,
-                                    IsHypoallergenic = e.IsHypoallergenic,
-                                    IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
-                                    ShelterId = e.ShelterId,
-                                }
-                        );
-                return entity.ToArray();
-            }
-        }
-
         public bool UpdateExotic(ExoticEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -304,5 +156,7 @@ namespace PetAdopter_API.Services
         }
     }
 }
+
+       
 
 

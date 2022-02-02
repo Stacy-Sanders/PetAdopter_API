@@ -35,9 +35,9 @@ namespace PetAdopter_API.Services
                     IsHouseTrained = model.IsHouseTrained,
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsDeclawed = model.IsDeclawed,
-                    CreatedUtc = DateTimeOffset.Now,
-                    AdopterId = model.AdopterId,
                     ShelterId = model.ShelterId,
+                    AdopterId = model.AdopterId,
+                    CreatedUtc = DateTimeOffset.Now,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -61,7 +61,19 @@ namespace PetAdopter_API.Services
                                     DomesticId = e.DomesticId,
                                     Species = e.Species,
                                     Name = e.Name,
-                                    CreatedUtc = e.CreatedUtc
+                                    Breed = e.Breed,
+                                    Sex = e.Sex,
+                                    IsSterile = e.IsSterile,
+                                    BirthDate = e.BirthDate,
+                                    IsAdoptionPending = e.IsAdoptionPending,
+                                    IsKidFriendly = e.IsKidFriendly,
+                                    IsPetFriendly = e.IsPetFriendly,
+                                    IsHypoallergenic = e.IsHypoallergenic,
+                                    IsHouseTrained = e.IsHouseTrained,
+                                    IsDeclawed = e.IsDeclawed,
+                                    ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
+                                    CreatedUtc = e.CreatedUtc,
                                 }
                         );
 
@@ -95,6 +107,7 @@ namespace PetAdopter_API.Services
                         IsDeclawed = entity.IsDeclawed,
                         CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
+                        AdopterId = entity.AdopterId,
                     };
             }
         }
@@ -108,6 +121,7 @@ namespace PetAdopter_API.Services
                         .Domestics
                         .Single(e => e.DomesticId == model.DomesticId && e.AdminId == _userId);
 
+                entity.DomesticId = model.DomesticId;
                 entity.Species = model.Species;
                 entity.Name = model.Name;
                 entity.Breed = model.Breed;

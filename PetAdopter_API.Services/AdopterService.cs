@@ -63,25 +63,6 @@ namespace PetAdopter_API.Services
                 return query.ToArray();
             }
         }
-        public IEnumerable<AdopterPetList> GetAdoptersPetList(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx.Adopter.Where(e => e.AdminId == _userId && e.AdopterId == id )
-                    .Select(e => new AdopterPetList
-                {
-                    AdopterId = e.AdopterId,
-                    FirstName = e.FirstName,
-                    LastName = e.LastName,
-                    City = e.City,
-                    State = e.State,
-                    CreatedUtc = e.CreatedUtc,
-                    Domestics = e.DomesticList,
-                    Exotics = e.ExoticList
-                });
-                return query.ToArray();
-            }
-        }
 
         public AdopterDetail GetAdopterById(int id)
         {
