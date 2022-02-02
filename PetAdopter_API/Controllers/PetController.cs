@@ -14,11 +14,11 @@ namespace PetAdopter_API.Controllers
     {
         // Create DomesticService
         [HttpPost]
-        private DomesticService CreateDomesticService()
+        private PetService CreatePetService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var DomesticService = new DomesticService(userId);
-            return DomesticService;
+            var PetService = new PetService(userId);
+            return PetService;
         }
 
         // GET by AdopterId
@@ -26,9 +26,9 @@ namespace PetAdopter_API.Controllers
         public IHttpActionResult GetDomesticByAdopterId(int id)
         {
 
-            DomesticService domesticService = CreateDomesticService();
-            var domestic = domesticService.GetDomesticByAdopterID(id);
-            return Ok(domestic);
+            PetService petService = CreatePetService();
+            var domesticPet = petService.GetDomesticByAdopterID(id);
+            return Ok(domesticPet);
 
         }
 
@@ -37,19 +37,9 @@ namespace PetAdopter_API.Controllers
         public IHttpActionResult GetDomesticByShelterId(int id)
         {
 
-            DomesticService domesticService = CreateDomesticService();
-            var domestic = domesticService.GetDomesticByShelterID(id);
-            return Ok(domestic);
-
-        }
-
-        // Create ExoticService
-        private ExoticService CreateExoticService()
-        {
-
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var ExoticService = new ExoticService(userId);
-            return ExoticService;
+            PetService petService = CreatePetService();
+            var domesticPet = petService.GetDomesticByShelterID(id);
+            return Ok(domesticPet);
 
         }
 
@@ -58,9 +48,9 @@ namespace PetAdopter_API.Controllers
         public IHttpActionResult GetExoticByAdopterId(int id)
         {
 
-            ExoticService exoticService = CreateExoticService();
-            var exotic = exoticService.GetExoticByAdopterID(id);
-            return Ok(exotic);
+            PetService petService = CreatePetService();
+            var exoticPet = petService.GetExoticByAdopterID(id);
+            return Ok(exoticPet);
 
         }
 
@@ -69,10 +59,11 @@ namespace PetAdopter_API.Controllers
         public IHttpActionResult GetExoticByShelterId(int id)
         {
 
-            ExoticService exoticService = CreateExoticService();
-            var exotic = exoticService.GetExoticByShelterID(id);
-            return Ok(exotic);
+            PetService petService = CreatePetService();
+            var exoticPet = petService.GetExoticByShelterID(id);
+            return Ok(exoticPet);
 
         }
     }
 }
+
