@@ -32,7 +32,7 @@ namespace PetAdopter_API.Controllers
 
         
         [HttpPost]
-        public IHttpActionResult GetAll(AdopterCreate adopter)
+        public IHttpActionResult Post(AdopterCreate adopter)
         {
 
             if (!ModelState.IsValid) { return BadRequest(ModelState); }

@@ -51,7 +51,7 @@ namespace PetAdopter_API.Controllers
 
         // Get by Hypoallergenic
         [HttpGet]
-        public IHttpActionResult GetHypoallergenic(bool isHypoallergenic)
+        public IHttpActionResult GetDomesticByHypoallergenic(bool isHypoallergenic)
         {
             PetService petService = CreatePetService();
             var domesticPets = petService.GetDomesticByHypoallergenic(isHypoallergenic);
@@ -60,13 +60,21 @@ namespace PetAdopter_API.Controllers
 
         // Get by Declawed
         [HttpGet]
-        public IHttpActionResult GetDeclawed(bool isDeclawed)
+        public IHttpActionResult GetDomesticByDeclawed(bool isDeclawed)
         {
             PetService petService = CreatePetService();
-            var domesticPets = petService.GetByDeclawed(isDeclawed);
+            var domesticPets = petService.GetDomesticByDeclawed(isDeclawed);
             return Ok(domesticPets);
         }
 
+        // Get by Declawed
+        [HttpGet]
+        public IHttpActionResult GetDomesticByHouseTrained(bool isHouseTrained)
+        {
+            PetService petService = CreatePetService();
+            var domesticPets = petService.GetDomesticByHouseTrained(isHouseTrained);
+            return Ok(domesticPets);
+        }
 
         // GET by AdopterId
         [HttpGet]
@@ -89,6 +97,36 @@ namespace PetAdopter_API.Controllers
             return Ok(exoticPet);
 
         }
+
+        // Get by Species
+        [HttpGet]
+        public IHttpActionResult GetExoticBySpecies(string species)
+        {
+            PetService petService = CreatePetService();
+            var exoticPets = petService.GetExoticBySpecies(species);
+            return Ok(exoticPets);
+        }
+
+        // Get by Legality
+        [HttpGet]
+        public IHttpActionResult GetExoticByLegal(bool isLegalInCity)
+        {
+            PetService petService = CreatePetService();
+            var exoticPets = petService.GetExoticByLegality(isLegalInCity);
+            return Ok(exoticPets);
+        }
+
+        // Get by Hypoallergenic
+        [HttpGet]
+        public IHttpActionResult GetExoticByHypoallergenic(bool isHypoallergenic)
+        {
+            PetService petService = CreatePetService();
+            var exoticPets = petService.GetExoticByHypoallergenic(isHypoallergenic);
+            return Ok(exoticPets);
+        }
+
+
     }
 }
+
 
