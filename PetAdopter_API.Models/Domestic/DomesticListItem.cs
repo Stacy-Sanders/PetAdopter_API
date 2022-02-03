@@ -24,7 +24,13 @@ namespace PetAdopter_API.Models
 
         public DateTime BirthDate { get; set; }
 
-        public bool IsAdoptionPending { get; set; }
+        public bool IsAdoptionPending
+        {
+            get
+            {
+                return AdopterId > 1;
+            }
+        }
 
         public bool IsKidFriendly { get; set; }
 
@@ -38,6 +44,9 @@ namespace PetAdopter_API.Models
 
         [Display(Name="Created")]
         public DateTimeOffset CreatedUtc { get; set; }
+
+        [Display(Name="Modified")]
+        public DateTimeOffset? ModifiedUtc { get; set; }
 
         [ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }

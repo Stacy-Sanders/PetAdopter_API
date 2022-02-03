@@ -16,9 +16,6 @@ namespace PetAdopter_API.Controllers
 
     public class AdopterController : ApiController
     {
-        private readonly ApplicationDbContext _context = new ApplicationDbContext();
-
-
         //Post(Create)
        
         private AdopterService CreateAdopterService()
@@ -38,7 +35,7 @@ namespace PetAdopter_API.Controllers
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
             var service = CreateAdopterService();
             if (!service.AdopterCreate(adopter)) { return InternalServerError(); }
-            return Ok($"New Adopter {adopter.AdopterId} created!");
+            return Ok($"New Adopter {adopter.FirstName} created!");
         }
 
         
