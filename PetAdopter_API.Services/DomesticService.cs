@@ -113,15 +113,6 @@ namespace PetAdopter_API.Services
             }
         }
 
-        public List<Domestic> GetDomesticByDeclawed()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx.Domestics.Where(x => x.IsDeclawed == true);
-                return query.ToList();
-            }
-        }
-
         public bool UpdateDomestic(DomesticEdit model)
         {
             using (var ctx = new ApplicationDbContext())

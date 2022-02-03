@@ -1,5 +1,6 @@
 ﻿using PetAdopter_API.Data;
 using PetAdopter_API.Models;
+using PetAdopter_API.Models.Pet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,25 @@ namespace PetAdopter_API.Services
                                 }
                         );
                 return entity.ToArray();
+            }
+        }
+
+        public bool UpdateAdopterDomestics(DomesticPetEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Domestics
+                        .Single(e => e.DomesticId == model.DomesticId && e.AdminId == _userId);
+
+                entity.DomesticId = model.DomesticId;
+                entity.Name = model.Name;
+                entity.AdopterId = model.AdopterId;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+
             }
         }
 
@@ -251,6 +271,25 @@ namespace PetAdopter_API.Services
             }
         }
 
+        public bool UpdateAdopterExotics(ExoticPetEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Single(e => e.ExoticId == model.ExoticId && e.AdminId == _userId);
+
+                entity.ExoticId = model.ExoticId;
+                entity.Name = model.Name;
+                entity.AdopterId = model.AdopterId;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+
+            }
+        }
+
         public IEnumerable<ExoticListItem> GetExoticByShelterID(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -378,6 +417,8 @@ namespace PetAdopter_API.Services
                         );
                 return entity.ToArray();
             }
+
         }
     }
 }
+
