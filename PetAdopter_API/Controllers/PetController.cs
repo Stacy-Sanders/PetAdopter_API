@@ -12,7 +12,6 @@ namespace PetAdopter_API.Controllers
     [Authorize]
     public class PetController : ApiController
     {
-        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         // Create DomesticService
         [HttpPost]

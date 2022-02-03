@@ -43,14 +43,20 @@ namespace PetAdopter_API.Models
         }
 
         [Required]
-        public bool IsAdoptionPending { get; set; }
+        public bool IsAdoptionPending 
+        {
+            get
+            {
+                return AdopterId > 1;
+            }
+        }
 
         public bool IsKidFriendly { get; set; }
 
         public bool IsPetFriendly { get; set; }
 
         public bool IsHypoallergenic { get; set; }
-
+        
         public bool IsHouseTrained { get; set; }
 
         public bool IsDeclawed { get; set; }

@@ -13,6 +13,14 @@ namespace PetAdopter_API.Models.Pet
 
         public string Name { get; set; }
 
+        public bool IsAdoptionPending
+        {
+            get
+            {
+                return AdopterId > 1;
+            }
+        }
+
         [ForeignKey(nameof(Adopter))]
         public int AdopterId { get; set; }
     }
