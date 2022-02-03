@@ -1,13 +1,19 @@
 ﻿using Microsoft.AspNet.Identity;
+using PetAdopter_API.Data;
+using PetAdopter_API.Models;
+using PetAdopter_API.Models.Pet;
 using PetAdopter_API.Services;
 using System;
 using System.Web.Http;
 
 namespace PetAdopter_API.Controllers
 {
+
     [Authorize]
     public class PetController : ApiController
     {
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+
         // Create DomesticService
         [HttpPost]
         private PetService CreatePetService()
@@ -27,6 +33,21 @@ namespace PetAdopter_API.Controllers
             var domesticPet = petService.GetDomesticByAdopterID(id);
             return Ok(domesticPet);
 
+        }
+
+        // PUT (update)
+        [HttpPut]
+        public IHttpActionResult UpdateAdopterDomestics(DomesticPetEdit id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreatePetService();
+
+            if (!service.UpdateAdopterDomestics(id))
+                return InternalServerError();
+
+            return Ok("Your domestic pet adopter information has been updated.");
         }
 
         // GET by ShelterId
@@ -85,6 +106,21 @@ namespace PetAdopter_API.Controllers
             var exoticPet = petService.GetExoticByAdopterID(id);
             return Ok(exoticPet);
 
+        }
+
+        // PUT (update)
+        [HttpPut]
+        public IHttpActionResult UpdateAdopterExotics(ExoticPetEdit id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreatePetService();
+
+            if (!service.UpdateAdopterExotics(id))
+                return InternalServerError();
+
+            return Ok("Your exotic pet adopter information has been updated.");
         }
 
         // GET by ShelterId
