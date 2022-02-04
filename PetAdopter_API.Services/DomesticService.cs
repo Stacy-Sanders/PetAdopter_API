@@ -29,7 +29,6 @@ namespace PetAdopter_API.Services
                     Sex = model.Sex,
                     IsSterile = model.IsSterile,
                     BirthDate = model.BirthDate,
-                    IsAdoptionPending = model.IsAdoptionPending,
                     IsKidFriendly = model.IsKidFriendly,
                     IsPetFriendly = model.IsPetFriendly,
                     IsHouseTrained = model.IsHouseTrained,
@@ -66,7 +65,6 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
@@ -75,6 +73,7 @@ namespace PetAdopter_API.Services
                                     ShelterId = e.ShelterId,
                                     AdopterId = e.AdopterId,
                                     CreatedUtc = e.CreatedUtc,
+                                    ModifiedUtc = e.ModifiedUtc,
                                 }
                         );
 
@@ -100,25 +99,16 @@ namespace PetAdopter_API.Services
                         Sex = entity.Sex,
                         IsSterile = entity.IsSterile,
                         BirthDate = entity.BirthDate,
-                        IsAdoptionPending = entity.IsAdoptionPending,
                         IsKidFriendly = entity.IsKidFriendly,
                         IsPetFriendly = entity.IsPetFriendly,
                         IsHypoallergenic = entity.IsHypoallergenic,
                         IsHouseTrained = entity.IsHouseTrained,
                         IsDeclawed = entity.IsDeclawed,
-                        CreatedUtc = entity.CreatedUtc,
                         ShelterId = entity.ShelterId,
                         AdopterId = entity.AdopterId,
+                        CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc,
                     };
-            }
-        }
-
-        public List<Domestic> GetDomesticByDeclawed()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx.Domestics.Where(x => x.IsDeclawed == true);
-                return query.ToList();
             }
         }
 
@@ -138,7 +128,6 @@ namespace PetAdopter_API.Services
                 entity.Sex = model.Sex;
                 entity.IsSterile = model.IsSterile;
                 entity.BirthDate = model.BirthDate;
-                entity.IsAdoptionPending = model.IsAdoptionPending;
                 entity.IsKidFriendly = model.IsKidFriendly;
                 entity.IsPetFriendly = model.IsPetFriendly;
                 entity.IsHypoallergenic = model.IsHypoallergenic;

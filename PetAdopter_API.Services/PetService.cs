@@ -1,5 +1,6 @@
 ﻿using PetAdopter_API.Data;
 using PetAdopter_API.Models;
+using PetAdopter_API.Models.Pet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,6 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
@@ -48,6 +48,25 @@ namespace PetAdopter_API.Services
                                 }
                         );
                 return entity.ToArray();
+            }
+        }
+
+        public bool UpdateAdopterDomestics(DomesticPetEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Domestics
+                        .Single(e => e.DomesticId == model.DomesticId && e.AdminId == _userId);
+
+                entity.DomesticId = model.DomesticId;
+                entity.Name = model.Name;
+                entity.AdopterId = model.AdopterId;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+
             }
         }
 
@@ -70,7 +89,6 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
@@ -78,6 +96,7 @@ namespace PetAdopter_API.Services
                                     IsDeclawed = e.IsDeclawed,
                                     CreatedUtc = e.CreatedUtc,
                                     ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
                                 }
                         );
                 return entity.ToArray();
@@ -102,15 +121,14 @@ namespace PetAdopter_API.Services
                                         Sex = e.Sex,
                                         IsSterile = e.IsSterile,
                                         BirthDate = e.BirthDate,
-                                        IsAdoptionPending = e.IsAdoptionPending,
                                         IsKidFriendly = e.IsKidFriendly,
                                         IsPetFriendly = e.IsPetFriendly,
                                         IsHypoallergenic = e.IsHypoallergenic,
                                         IsHouseTrained = e.IsHouseTrained,
                                         IsDeclawed = e.IsDeclawed,
-                                        CreatedUtc = e.CreatedUtc,
                                         ShelterId = e.ShelterId,
                                         AdopterId = e.AdopterId,
+                                        CreatedUtc = e.CreatedUtc,
                                     }
                                     );
                 return entity.ToArray();
@@ -136,13 +154,13 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
                                     IsHouseTrained = e.IsHouseTrained,
                                     IsDeclawed = e.IsDeclawed,
                                     ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
                                     CreatedUtc = e.CreatedUtc,
                                 }
 
@@ -170,13 +188,13 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
                                     IsHouseTrained = e.IsHouseTrained,
                                     IsDeclawed = e.IsDeclawed,
                                     ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
                                     CreatedUtc = e.CreatedUtc,
                                 }
 
@@ -204,13 +222,13 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
                                     IsHouseTrained = e.IsHouseTrained,
                                     IsDeclawed = e.IsDeclawed,
                                     ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
                                     CreatedUtc = e.CreatedUtc,
                                 }
 
@@ -237,17 +255,35 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
                                     IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
                                     ShelterId = e.ShelterId,
                                     AdopterId = e.AdopterId,
+                                    CreatedUtc = e.CreatedUtc,
                                 }
                         );
                 return entity.ToArray();
+            }
+        }
+
+        public bool UpdateAdopterExotics(ExoticPetEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Exotics
+                        .Single(e => e.ExoticId == model.ExoticId && e.AdminId == _userId);
+
+                entity.ExoticId = model.ExoticId;
+                entity.Name = model.Name;
+                entity.AdopterId = model.AdopterId;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+
             }
         }
 
@@ -270,13 +306,13 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
                                     IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
                                     ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
+                                    CreatedUtc = e.CreatedUtc,
                                 }
                         );
                 return entity.ToArray();
@@ -301,14 +337,13 @@ namespace PetAdopter_API.Services
                                         Sex = e.Sex,
                                         IsSterile = e.IsSterile,
                                         BirthDate = e.BirthDate,
-                                        IsAdoptionPending = e.IsAdoptionPending,
                                         IsKidFriendly = e.IsKidFriendly,
                                         IsPetFriendly = e.IsPetFriendly,
                                         IsHypoallergenic = e.IsHypoallergenic,
                                         IsLegalInCity = e.IsLegalInCity,
-                                        CreatedUtc = e.CreatedUtc,
                                         ShelterId = e.ShelterId,
                                         AdopterId = e.AdopterId,
+                                        CreatedUtc = e.CreatedUtc,
                                     }
                                     );
                 return entity.ToArray();
@@ -334,13 +369,13 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
                                     IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
                                     ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
+                                    CreatedUtc = e.CreatedUtc,
                                 }
 
                         );
@@ -367,17 +402,19 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
                                     IsLegalInCity = e.IsLegalInCity,
-                                    CreatedUtc = e.CreatedUtc,
                                     ShelterId = e.ShelterId,
+                                    AdopterId = e.AdopterId,
+                                    CreatedUtc = e.CreatedUtc,
                                 }
                         );
                 return entity.ToArray();
             }
+
         }
     }
 }
+

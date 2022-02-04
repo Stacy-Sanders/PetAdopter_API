@@ -29,14 +29,13 @@ namespace PetAdopter_API.Services
                     Sex = model.Sex,
                     IsSterile = model.IsSterile,
                     BirthDate = model.BirthDate,
-                    IsAdoptionPending = model.IsAdoptionPending,
                     IsKidFriendly = model.IsKidFriendly,
                     IsPetFriendly = model.IsPetFriendly,
                     IsHypoallergenic = model.IsHypoallergenic,
                     IsLegalInCity = model.IsLegalInCity,
-                    CreatedUtc = DateTimeOffset.Now,
-                    AdopterId = model.AdopterId,
                     ShelterId = model.ShelterId,
+                    AdopterId = model.AdopterId,
+                    CreatedUtc = DateTimeOffset.Now,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -65,7 +64,6 @@ namespace PetAdopter_API.Services
                                     Sex = e.Sex,
                                     IsSterile = e.IsSterile,
                                     BirthDate = e.BirthDate,
-                                    IsAdoptionPending = e.IsAdoptionPending,
                                     IsKidFriendly = e.IsKidFriendly,
                                     IsPetFriendly = e.IsPetFriendly,
                                     IsHypoallergenic = e.IsHypoallergenic,
@@ -99,7 +97,6 @@ namespace PetAdopter_API.Services
                         Sex = entity.Sex,
                         IsSterile = entity.IsSterile,
                         BirthDate = entity.BirthDate,
-                        IsAdoptionPending = entity.IsAdoptionPending,
                         IsKidFriendly = entity.IsKidFriendly,
                         IsPetFriendly = entity.IsPetFriendly,
                         IsHypoallergenic = entity.IsHypoallergenic,
@@ -126,7 +123,6 @@ namespace PetAdopter_API.Services
                 entity.Sex = model.Sex;
                 entity.IsSterile = model.IsSterile;
                 entity.BirthDate = model.BirthDate;
-                entity.IsAdoptionPending = model.IsAdoptionPending;
                 entity.IsKidFriendly = model.IsKidFriendly;
                 entity.IsPetFriendly = model.IsPetFriendly;
                 entity.IsHypoallergenic = model.IsHypoallergenic;

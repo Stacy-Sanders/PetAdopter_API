@@ -27,8 +27,13 @@ namespace PetAdopter_API.Models
         [Required]
         public DateTime BirthDate { get; set; }
 
-        // [Required]
-        public bool IsAdoptionPending { get; set; }
+        public bool IsAdoptionPending
+        {
+            get
+            {
+                return AdopterId > 1;
+            }
+        }
 
         public bool IsKidFriendly { get; set; }
 

@@ -69,6 +69,8 @@
     <Compile Include="Exotic\ExoticDetail.cs" />
     <Compile Include="Exotic\ExoticEdit.cs" />
     <Compile Include="Exotic\ExoticListItem.cs" />
+    <Compile Include="Pet\DomesticPetEdit.cs" />
+    <Compile Include="Pet\ExoticPetEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shelter\ShelterCreate.cs" />
     <Compile Include="Shelter\ShelterDetail.cs" />
