@@ -73,7 +73,7 @@ During the creation of this app, we collaborated and tracked our progress using 
 
 [Trello](https://trello.com/b/MtVranwy/api-project-pet-adopter) 
 
-[GitHub](https://github.com/ALingo86/PetAdopter_API) 
+[GitHub](https://github.com/Stacy-Sanders/PetAdopter_API) 
 
 [dbdiagram.io](https://dbdiagram.io/d/61eaffa87cf3fc0e7c52dabf)
 
